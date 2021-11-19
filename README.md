@@ -1,4 +1,10 @@
+# LV_calling
+
+A downstream analysis pipeline focusing on large gene modification (large variants) after CRISPR/Cas9 editing. The pipeline takes the output from longread_umi[[1]](#1) pipeline using SMRTseq data and generates a series of files and figures for large gene modification analysis.
+
 ## SMRTseq_data_processing.py
+
+
 
 Updated date: 2021-11-19
 
@@ -74,3 +80,6 @@ optional arguments:
 [Large insertions calling...]\
 Program finished.
 
+## References
+<a id="1">[1]</a> 
+SM Karst, RM Ziels, RH Kirkegaard, EA Sørensen, D. McDonald, Q Zhu, R Knight, & M Albertsen. (2020). Enabling high-accuracy long-read amplicon sequences using unique molecular identifiers with Nanopore or PacBio sequencing. bioRxiv, 6459039. https://github.com/SorenKarst/longread_umi
