@@ -6,7 +6,6 @@ Updated date: 2021-11-19
 
 ### Schematics
 ![Schematics](Schematics.png)
-
 **Table of contents**
 - [Installation](#installation)
 - [Usage](#usage)
