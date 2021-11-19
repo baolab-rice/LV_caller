@@ -1,9 +1,10 @@
 ## SMRTseq_data_processing.py
 
-###Schematics
+Updated date: 2021-11-19
+
+### Schematics
 ![Schematics](Schematics.png)
 
-Version 4.0 Update 20210812
 ```bash
 usage: SMRTseq_data_processing.py [-h] -d DIRECTORY -o OUTPUT [-st {1,2}]
                                   [-os {1,2}] [-r READS] [-m] [-g REFERENCE]
@@ -57,8 +58,7 @@ optional arguments:
 
 ```
 
-blat -stepSize=5 -repMatch=2253 -minScore=20 -minIdentity=0 database.2bit query.fa output.psl\
-
+### Process
 [Gathering umibins list...]\
 [Reading from umibins...]\
 [Polishing umis...]\
@@ -72,5 +72,5 @@ blat -stepSize=5 -repMatch=2253 -minScore=20 -minIdentity=0 database.2bit query.
 [Clustering large deletions (>200bp)...]\
 [Generating distribution figure for clustered large deletions (>200bp)...]\
 [Large insertions calling...]\
-Program finished.\
+Program finished.
 
