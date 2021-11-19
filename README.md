@@ -7,6 +7,8 @@ Updated date: 2021-11-19
 NEXT plan:
 - Provide example data
 - Package the script to conda
+- Upload R code and matlab code
+- cut_site_pos detection
 
 **Table of contents**
 - [Schematics](#schematics)
@@ -43,6 +45,8 @@ Download zip file from our github page.
 4. The SMRTseq_data_processing .py in the scrips folder is the main script to be used. 
 
 ## Quick-start
+For a complete running with 
+
 
 ## Usage
 ```bash
