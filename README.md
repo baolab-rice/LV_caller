@@ -9,6 +9,8 @@ NEXT plan:
 - Package the script to conda
 - Upload R code and matlab code
 - cut_site_pos detection
+- 2-2
+- orientations primers-gRNA
 
 **Table of contents**
 - [Schematics](#schematics)
