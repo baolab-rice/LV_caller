@@ -14,7 +14,7 @@ NEXT plan:
 - [Quick start](#quick-start)
 - [Usage](#usage)
 - [References](#references)
-- 
+
 ## Schematics
 ![Schematics](Schematics.png)
 
