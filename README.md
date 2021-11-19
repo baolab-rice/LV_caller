@@ -1,5 +1,8 @@
 ## SMRTseq_data_processing.py
 
+###Schematics
+![Schematics](Schematics.png)
+
 Version 4.0 Update 20210812
 ```bash
 usage: SMRTseq_data_processing.py [-h] -d DIRECTORY -o OUTPUT [-st {1,2}]
@@ -54,20 +57,20 @@ optional arguments:
 
 ```
 
-blat -stepSize=5 -repMatch=2253 -minScore=20 -minIdentity=0 database.2bit query.fa output.psl
+blat -stepSize=5 -repMatch=2253 -minScore=20 -minIdentity=0 database.2bit query.fa output.psl\
 
-[Gathering umibins list...]
-[Reading from umibins...]
-[Polishing umis...]
-[Reading from raw fasta file...]
-[Mapping reads with reads IDs...]
-[Writing into files...]
-[Generating fasta file for consensus seqs...]
-[Alignment using minimap2...]
-[Large deletions calling...]
-[Generating distribution figure for large deletions (>200bp)...]
-[Clustering large deletions (>200bp)...]
-[Generating distribution figure for clustered large deletions (>200bp)...]
-[Large insertions calling...]
-Program finished.
+[Gathering umibins list...]\
+[Reading from umibins...]\
+[Polishing umis...]\
+[Reading from raw fasta file...]\
+[Mapping reads with reads IDs...]\
+[Writing into files...]\
+[Generating fasta file for consensus seqs...]\
+[Alignment using minimap2...]\
+[Large deletions calling...]\
+[Generating distribution figure for large deletions (>200bp)...]\
+[Clustering large deletions (>200bp)...]\
+[Generating distribution figure for clustered large deletions (>200bp)...]\
+[Large insertions calling...]\
+Program finished.\
 
