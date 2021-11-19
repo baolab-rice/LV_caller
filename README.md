@@ -2,15 +2,17 @@
 
 A downstream analysis pipeline focusing on large gene modification (large variants) after CRISPR/Cas9 editing. The pipeline takes the output from longread_umi[[1]](#1) pipeline using SMRTseq data and generates a series of files and figures for large gene modification analysis.
 
-## SMRTseq_data_processing.py
-
-
-
 Updated date: 2021-11-19
 
 ### Schematics
 ![Schematics](Schematics.png)
 
+**Table of contents**
+- [Installation](#installation)
+- [Usage](#usage)
+- [References](#references)
+
+### Usage
 ```bash
 usage: SMRTseq_data_processing.py [-h] -d DIRECTORY -o OUTPUT [-st {1,2}]
                                   [-os {1,2}] [-r READS] [-m] [-g REFERENCE]
@@ -64,7 +66,7 @@ optional arguments:
 
 ```
 
-### Process
+#### Process
 [Gathering umibins list...]\
 [Reading from umibins...]\
 [Polishing umis...]\
