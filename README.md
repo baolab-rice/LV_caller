@@ -35,7 +35,8 @@ These packages are applied in distribution generation.
 
 3. Download the scripts
 ```bash
-git clone https://github.com/baolab-rice/LV_calling.git```
+git clone https://github.com/baolab-rice/LV_calling.git
+```
 or
 Download zip file from our github page.
 
