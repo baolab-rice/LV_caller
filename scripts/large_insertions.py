@@ -35,7 +35,7 @@ def calculate_insertion_pos(dictname,output):
                 f.write(dictname[umi]['read'][start:end])
                 f.write('\n')
                 start = end
-            else:
+            elif re.match('[MIS=X]',pos[1]):
                 start = int(pos[0]) + start
     f.close()
             
