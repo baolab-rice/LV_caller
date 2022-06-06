@@ -18,6 +18,7 @@ def read_from_sam(filename,pattern):
     return umis
 
 ## The functions for large deletion selection
+### ERROR!!
 def seperate_cigar(dictname):
 
     p = re.compile("[A-Z]") # actually only a few characters
@@ -109,9 +110,9 @@ def calculate_deletion_pos(dictname,cut_pos,tolerance):
 
         if len(match) < 2:
             for pos in dictname[umi]['pos']:
-                if pos[1] != 'N':
+                if re.match('[MD=X]',pos[1]):
                     start = int(pos[0]) + start
-                else:
+                elif pos[1] == 'N':
                     end = int(pos[0]) + start
                     length = int(pos[0]) 
                     break
@@ -130,9 +131,9 @@ def calculate_deletion_pos(dictname,cut_pos,tolerance):
             end_alt = [None]*n
             i = 0
             for pos in dictname[umi]['pos']:
-                if pos[1] != 'N':
+                if re.match('[MD=X]',pos[1]):
                     start = int(pos[0]) + start
-                else:
+                elif pos[1] == 'N':
                     end = int(pos[0]) + start
                     end_alt[i] = end
                     start_alt[i] = start
