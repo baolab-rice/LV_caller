@@ -1,12 +1,12 @@
 import sys
 import re
 
-def read_from_sam(filename,pattern):
+def read_from_sam(filename):
 
     umis = {}
     with open(filename,'r') as f:
         for line in f:
-            if re.match(pattern,line):
+            if not line.lstrip().startswith('@'):
                 columns = line.split('\t')
                 umi = columns[0].split("_consensus")[0]
                 umis[umi] = {}
@@ -217,12 +217,8 @@ def write_output_invalidated_umis(dictname,filename):
     f.close()
 
 def large_deletion_calling(filename,code,mode):
-    # Still hardcode here
-    if mode == 'consensus':
-        pattern = 'umi'
-    elif mode == 'all':
-        pattern = 'm64'
-    umis = read_from_sam(filename,pattern)
+
+    umis = read_from_sam(filename)
     dict_200,dict_50,dict_small,dict_non = select_large_deletions(umis,code)
     file_200 = filename.split("_alignment")[0] + "_LD200.txt"
     file_50 = filename.split("_alignment")[0] + "_LD50to200.txt"
@@ -237,7 +233,7 @@ def large_deletion_calling(filename,code,mode):
 
 def main():
     
-    large_deletion_calling(sys.argv[1],"2224i2778c10t")
+    large_deletion_calling(sys.argv[1],"2816c10t","all")
     # umis = read_from_sam(sys.argv[1])
     # umis = select_large_deletions(umis)
     # output(umis)
