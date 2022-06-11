@@ -35,7 +35,7 @@ def calculate_insertion_pos(dictname,output):
                 f.write(dictname[umi]['read'][start:end])
                 f.write('\n')
                 start = end
-            elif re.match('[MIS=X]',pos[1]):
+            elif re.match('[MS=X]',pos[1]):
                 start = int(pos[0]) + start
     f.close()
             
@@ -52,7 +52,7 @@ def select_large_insertions(dictname,output):
 def large_insertion_calling(filename):
 
     output = filename.split("_alignment")[0] + "_LS.fasta"
-    umis = read_from_sam(filename,'None')
+    umis = read_from_sam(filename)
     umis = select_large_insertions(umis,output)
 
 def main():
