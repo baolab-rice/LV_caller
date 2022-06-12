@@ -35,9 +35,9 @@ echo "samllINDEL or unmodified:"
 INDEL=$(wc -l ${pathname}/outputs/result_small_INDELs_or_unmodified.txt | awk '{print $1}')
 echo "$INDEL -1" | bc
 
-echo "LS:"
-LS=$(wc -l ${pathname}/outputs/result_LS.fasta | awk '{print $1}')
-echo "$LS/2" |bc
+echo "LI:"
+LI=$(wc -l ${pathname}/outputs/result_LI.fasta | awk '{print $1}')
+echo "$LI/2" |bc
 
 echo "clusters in LD200:"
 clusters=$(wc -l ${pathname}/outputs/result_LD200_cluster.txt | awk '{print $1}')
