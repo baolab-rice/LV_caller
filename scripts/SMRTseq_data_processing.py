@@ -48,7 +48,7 @@ def check_if_empty(element,name):
 ## Extract UMI bins names
 def get_umi_bin_list(_dir):
 
-    arguments = ['ls {}/raconx2/ | xargs'.format(_dir)]
+    arguments = ['ls {}/raconx3/ | xargs'.format(_dir)]
     process = Popen(args = arguments,
                     shell=True,
                     stdout=PIPE, stderr=PIPE)
@@ -57,7 +57,7 @@ def get_umi_bin_list(_dir):
 
     umibins_raw = stdout.decode("utf-8")
     umibins_names = [x.strip() for x in umibins_raw.split(" ") if "umi" in x]
-    umibins_dirs = [_dir + "/raconx2/" + x.strip() for x in umibins_raw.split(" ") if "umi" in x]
+    umibins_dirs = [_dir + "/raconx3/" + x.strip() for x in umibins_raw.split(" ") if "umi" in x]
 
     return umibins_names,umibins_dirs
 
@@ -268,7 +268,7 @@ def get_umis():
         umis = read_umi_bin(umibins_names[i],umibins_dirs[i],umis)
     
     print("[Polishing umis...]")
-    polished_cons_filename = args.directory + "/consensus_raconx2.fa"
+    polished_cons_filename = args.directory + "/consensus_raconx3.fa"
     polished_umis = read_polished_umi(polished_cons_filename)
     umis = polishing_umis(umis,polished_umis)
      
@@ -315,7 +315,7 @@ def large_deletion():
     #Gernate distribution figure
     print("[Generating distribution figure for large deletions (>200bp)...]")
     from distribution import distribution_generate
-    distribution_generate(args.output + "_LD200.txt", int(args.large_deletion_parameters.split("c")[0]))
+    distribution_generate(args.output + "_LD200.txt", int(args.large_deletion_parameters))
 
     return LD200_size
 
@@ -371,7 +371,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=desc)
     # Required 
     parser.add_argument('-d','--directory',required=True,help="Directory of outout folder with longumi_read pipeline, \
-                                                            the output folder should contain a raconx2 subfolder.")
+                                                            the output folder should contain a raconx subfolder.")
     parser.add_argument('-o','--output',required=True, help="Output directory. Output the completly organized file.")
 
     parser.add_argument('-st','--stats',choices=['1','2'],default='2', help="Output the stats filem (default=2):\n\
@@ -398,10 +398,8 @@ if __name__ == "__main__":
     parser.add_argument('-ld','--large_deletion',default=False,action='store_true',\
                         help="Large deletion calling, devide LDs as small INDELs or unmodified, \
                             50bp-200bp, and >200bp.")
-    parser.add_argument('-ld_ps','--large_deletion_parameters',default='2778c10t',\
-                        help="Large deletion analysis parameters: \
-                        FORMAT: cut_site_pos+c+tolerance_bp+t \
-                        Default: 2778c10t")
+    parser.add_argument('-ld_ps','--large_deletion_parameters',\
+                        help="Large deletion analysis parameters:")
 
     # Large insertions calling 
     parser.add_argument('-ls','--large_insertion',default=False,action='store_true',\
