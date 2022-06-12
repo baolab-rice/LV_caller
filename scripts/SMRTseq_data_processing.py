@@ -402,7 +402,7 @@ if __name__ == "__main__":
                         help="Large deletion analysis parameters:")
 
     # Large insertions calling 
-    parser.add_argument('-ls','--large_insertion',default=False,action='store_true',\
+    parser.add_argument('-li','--large_insertion',default=False,action='store_true',\
                         help="Large insertion (>=50bp) calling.")
 
     # Large deletion clustering
