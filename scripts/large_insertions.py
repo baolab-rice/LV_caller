@@ -51,7 +51,7 @@ def select_large_insertions(dictname,output):
 
 def large_insertion_calling(filename):
 
-    output = filename.split("_alignment")[0] + "_LS.fasta"
+    output = filename.split("_alignment")[0] + "_LI.fasta"
     umis = read_from_sam(filename)
     umis = select_large_insertions(umis,output)
 
