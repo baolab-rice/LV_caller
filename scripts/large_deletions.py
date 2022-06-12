@@ -101,7 +101,7 @@ def large_deletion_small(dictname1,dictname2,dictname3,dictname4):
         del new_dict[umi]
     return new_dict   
 
-def calculate_deletion_pos(dictname,cut_pos,tolerance):
+def calculate_deletion_pos(dictname,cut_pos):
 
     for umi in dictname.keys():
 
@@ -120,7 +120,7 @@ def calculate_deletion_pos(dictname,cut_pos,tolerance):
             dictname[umi]['deletion_end'] = end
             dictname[umi]['length'] = length
             dictname[umi]['alt'] = 'None'
-            if start <= cut_pos + tolerance and end >= cut_pos - tolerance:
+            if start <= cut_pos and end >= cut_pos:
                 dictname[umi]['if_cover_cutsite'] = "yes"
             else:
                 dictname[umi]['if_cover_cutsite'] = "no"
@@ -146,7 +146,7 @@ def calculate_deletion_pos(dictname,cut_pos,tolerance):
             dictname[umi]['length'] = end_alt[n-1] - start_alt[0]
             for u in range(n):
                 # if there's a deletion can cover the cut site, then output that deletion's start and end
-                if start_alt[u] <= cut_pos + tolerance and end_alt[u] >= cut_pos - tolerance:
+                if start_alt[u] <= cut_pos and end_alt[u] >= cut_pos:
                     dictname[umi]['if_cover_cutsite'] = "yes"
                     dictname[umi]['deletion_start'] = start_alt[u]
                     dictname[umi]['deletion_end'] = end_alt[u]
@@ -164,18 +164,17 @@ def calculate_deletion_pos(dictname,cut_pos,tolerance):
 
 def select_large_deletions(dictname,code):
 
-    cut_pos = int(code.split("c")[0])
-    tolerance = int(code.split("c")[1].split("t")[0])
+    cut_pos = int(code)
 
     dictname = seperate_cigar(dictname)
 
     dict_non = invalidated_seqs(dictname)
 
     dict_200 = large_deletions_200(dictname)
-    dict_200 = calculate_deletion_pos(dict_200,cut_pos,tolerance)
+    dict_200 = calculate_deletion_pos(dict_200,cut_pos)
     
     dict_50 = large_deletion_50to200(dictname)
-    dict_50 = calculate_deletion_pos(dict_50,cut_pos,tolerance)
+    dict_50 = calculate_deletion_pos(dict_50,cut_pos)
 
     dict_small = large_deletion_small(dictname,dict_200,dict_50,dict_non)
     
@@ -220,9 +219,9 @@ def large_deletion_calling(filename,code,mode):
 
     umis = read_from_sam(filename)
     dict_200,dict_50,dict_small,dict_non = select_large_deletions(umis,code)
-    file_200 = filename.split("_alignment")[0] + "_LD200.txt"
-    file_50 = filename.split("_alignment")[0] + "_LD50to200.txt"
-    file_small = filename.split("_alignment")[0] + "_small_INDELs_or_unmodified.txt"
+    file_200 = filename.split("_alignment")[0] + "_LD200_temp.txt"
+    file_50 = filename.split("_alignment")[0] + "_LD50to200_temp.txt"
+    file_small = filename.split("_alignment")[0] + "_small_INDELs_or_unmodified_temp.txt"
     file_discard = filename.split("_alignment")[0] + "_invalidated_umis.txt"
     write_output_large(dict_200,file_200)
     write_output_large(dict_50,file_50)
