@@ -312,11 +312,6 @@ def large_deletion():
     from large_deletions import large_deletion_calling
     LD200_size = large_deletion_calling(inputfile,args.large_deletion_parameters,mode)
 
-    #Gernate distribution figure
-    print("[Generating distribution figure for large deletions (>200bp)...]")
-    from distribution import distribution_generate
-    distribution_generate(args.output + "_LD200.txt", int(args.large_deletion_parameters))
-
     return LD200_size
 
 def large_insertion():
@@ -326,6 +321,13 @@ def large_insertion():
     from large_insertions import large_insertion_calling
     large_insertion_calling(inputfile)
 
+def large_variants_rearrange():
+
+    print("[Large deletions and large insertions rearranging...]")
+    from LV_rearrange import rearrange
+    rearrange(args.output)
+
+
 def large_deletion_clustering():
 
     print("[Clustering large deletions (>200bp)...]")
@@ -333,10 +335,26 @@ def large_deletion_clustering():
     from clustering import cluster_generate
     cluster_generate(inputfile, args.large_deletion_clustering_parameters)
 
+def distribute_LD():
+    #Gernate distribution figure
+    print("[Generating distribution figure for large deletions (>200bp)...]")
+    from distribution import distribution_generate
+    distribution_generate(args.output + "_LD200.txt", int(args.large_deletion_parameters))
+
     #Gernate distribution figure
     print("[Generating distribution figure for clustered large deletions (>200bp)...]")
     from distribution import distribution_generate
-    distribution_generate(args.output + "_LD200_cluster.txt", int(args.large_deletion_parameters.split("c")[0]))
+    distribution_generate(args.output + "_LD200_cluster.txt", int(args.large_deletion_parameters))
+
+def remove_temp():
+
+    print("[Removing temp files...]")
+    arguments = ['rm {}*temp*'.format(args.output)]
+    process = Popen(args = arguments,
+                    shell=True,
+                    stdout=PIPE, stderr=PIPE)
+    stdout, stderr = process.communicate()
+    del(stderr)
 
 def main():
 
@@ -351,17 +369,14 @@ def main():
     
     if args.large_deletion == True:
         LD200_size = large_deletion()
+        large_insertion()
+        large_variants_rearrange()
         if args.large_deletion_clustering == True and LD200_size != 0:
             large_deletion_clustering()
-    
-    if args.large_insertion == True:
-        large_insertion()
-
-
+            distribute_LD()
+            remove_temp()
 
     print("Program finished.")
-
-
 
 if __name__ == "__main__":
 
