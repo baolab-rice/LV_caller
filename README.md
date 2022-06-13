@@ -2,7 +2,7 @@
 
 A downstream analysis pipeline focusing on large gene modification (large variants) after CRISPR/Cas9 editing. The pipeline takes the output from longread_umi[[1]](#1) pipeline using SMRTseq data and generates a series of files and figures for large gene modification analysis.
 
-Updated date: 2022-6-3
+Updated date: 2022-6-12
 
 NEXT plan:
 - Provide example data
@@ -114,11 +114,13 @@ optional arguments:
 [Generating fasta file for consensus seqs...]\
 [Alignment using minimap2...]\
 [Large deletions calling...]\
-[Generating distribution figure for large deletions (>200bp)...]\
-[Clustering large deletions (>200bp)...]\
-[Generating distribution figure for clustered large deletions (>200bp)...]\
 [Large insertions calling...]\
-Program finished.
+[Large deletions and large insertions rearranging...]\
+[Clustering large deletions (>200bp)...]\
+[Generating distribution figure for large deletions (>200bp)...]\
+[Generating distribution figure for clustered large deletions (>200bp)...]\
+[Removing temp files...]\
+[Generating stats...]
 
 ## References
 <a id="1">[1]</a> 
