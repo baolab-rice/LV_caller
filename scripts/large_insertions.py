@@ -9,7 +9,6 @@ def large_insertions(dictname):
         marker = 0 
         for pos in dictname[umi]['pos']:
             if pos[1] == 'I':
-                # define 50bp as large insertions
                 if int(pos[0]) >= 50:
                     marker = 1     
         if marker == 0:
@@ -51,7 +50,7 @@ def select_large_insertions(dictname,output):
 
 def large_insertion_calling(filename):
 
-    output = filename.split("_alignment")[0] + "_LI.fasta"
+    output = filename.split("_alignment")[0] + "_LI_temp.fasta"
     umis = read_from_sam(filename)
     umis = select_large_insertions(umis,output)
 
@@ -62,3 +61,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
