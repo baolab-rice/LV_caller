@@ -166,15 +166,15 @@ def small_INDEL(dictname, cutsite):
     umis_sINDEL = {}
     for umi in dictname.keys():
         start = int(dictname[umi]['start_pos'])
-        marker = 0
         for pos in dictname[umi]['pos']:
             if re.match('[MD=NX]',pos[1]):
                 start = int(pos[0]) + start
-                if start > cutsite and re.match('[D]',pos[1])::
+                if start > cutsite:
+                    if re.match('[D]',pos[1]):
                         umis_sINDEL[umi] = dictname[umi]
                     break
                 # Assum insertion only happends at cutsite
-                elif start = cutsite and re.match('[ID]',pos[1]):
+                elif start == cutsite and re.match('[ID]',pos[1]):
                     umis_sINDEL[umi] = dictname[umi]
                     break
     
