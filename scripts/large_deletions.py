@@ -87,7 +87,7 @@ def large_deletion_50to200(dictname):
 
     return new_dict
 
-def large_deletion_small(dictname1,dictname2,dictname3,dictname4):
+def large_deletion_no_LD(dictname1,dictname2,dictname3,dictname4):
 
     new_dict = dictname1.copy()
     umis_to_be_deleted = []
@@ -161,6 +161,21 @@ def calculate_deletion_pos(dictname,cut_pos):
             
     return dictname
 
+def small_INDEL(dictname, cutsite):
+    umis_un = dictname.copy()
+    umis_sINDEL = {}
+    for umi in dictname.keys():
+        start = int(dictname[umi]['start_pos'])
+        for pos in dictname[umi]['pos']:
+            if re.match('[MD=NX]',pos[1]):
+                start = int(pos[0]) + start
+                if start > cutsite and re.match('[ID]',pos[1]):
+                    umis_sINDEL[umi] = dictname[umi]
+    
+    for umi in umis_sINDEL.keys():
+        del umis_un[umi]
+
+    return umis_sINDEL, umis_un
 
 def select_large_deletions(dictname,code):
 
@@ -176,9 +191,12 @@ def select_large_deletions(dictname,code):
     dict_50 = large_deletion_50to200(dictname)
     dict_50 = calculate_deletion_pos(dict_50,cut_pos)
 
-    dict_small = large_deletion_small(dictname,dict_200,dict_50,dict_non)
+    dict_no_LD = large_deletion_no_LD(dictname,dict_200,dict_50,dict_non)
+
+    dict_sINDEL,dict_un = small_INDEL(dict_no_LD, cut_pos)
+
     
-    return dict_200,dict_50,dict_small,dict_non
+    return dict_200,dict_50,dict_sINDEL,dict_un,dict_non
 
 #Output the final results
 
@@ -218,14 +236,17 @@ def write_output_invalidated_umis(dictname,filename):
 def large_deletion_calling(filename,code,mode):
 
     umis = read_from_sam(filename)
-    dict_200,dict_50,dict_small,dict_non = select_large_deletions(umis,code)
+    dict_200,dict_50,dict_small,dict_un,dict_non = select_large_deletions(umis,code)
     file_200 = filename.split("_alignment")[0] + "_LD200_temp.txt"
     file_50 = filename.split("_alignment")[0] + "_LD50to200_temp.txt"
-    file_small = filename.split("_alignment")[0] + "_small_INDELs_or_unmodified_temp.txt"
+    file_small = filename.split("_alignment")[0] + "_small_INDELs_temp.txt"
+    file_un = filename.split("_alignment")[0] + "_unmodified_temp.txt"
     file_discard = filename.split("_alignment")[0] + "_invalidated_umis.txt"
+
     write_output_large(dict_200,file_200)
     write_output_large(dict_50,file_50)
     write_output_small(dict_small,file_small)
+    write_output_small(dict_un,file_un)
     write_output_invalidated_umis(dict_non,file_discard)
 
     return len(dict_200)
