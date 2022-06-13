@@ -31,13 +31,25 @@ echo "LD50-200:"
 LD50=$(wc -l ${pathname}/outputs/result_LD50to200.txt | awk '{print $1}')
 echo "$LD50 -1" | bc
 
-echo "samllINDEL or unmodified:"
-INDEL=$(wc -l ${pathname}/outputs/result_small_INDELs_or_unmodified.txt | awk '{print $1}')
+echo "samllINDEL:"
+INDEL=$(wc -l ${pathname}/outputs/result_small_INDELs.txt | awk '{print $1}')
 echo "$INDEL -1" | bc
 
-echo "LI:"
-LI=$(wc -l ${pathname}/outputs/result_LI.fasta | awk '{print $1}')
-echo "$LI/2" |bc
+echo "unmodified:"
+UN=$(wc -l ${pathname}/outputs/result_unmodified.txt | awk '{print $1}')
+echo "$UN -1" | bc
+
+echo "LI_with_LD200:"
+LI1=$(wc -l ${pathname}/outputs/result_LI_with_LD200.fasta | awk '{print $1}')
+echo "$LI1/2" |bc
+
+echo "LI_with_LD50:"
+LI2=$(wc -l ${pathname}/outputs/result_LI_with_LD50.fasta | awk '{print $1}')
+echo "$LI2/2" |bc
+
+echo "LI_other:"
+LI3=$(wc -l ${pathname}/outputs/result_LI_other.fasta | awk '{print $1}')
+echo "$LI3/2" |bc
 
 echo "clusters in LD200:"
 clusters=$(wc -l ${pathname}/outputs/result_LD200_cluster.txt | awk '{print $1}')
