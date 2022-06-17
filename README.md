@@ -2,15 +2,13 @@
 
 A downstream analysis pipeline focusing on large gene modification (large variants) after CRISPR/Cas9 editing. The pipeline takes the output from longread_umi[[1]](#1) pipeline using SMRTseq data and generates a series of files and figures for large gene modification analysis.
 
-Updated date: 2022-6-12
+Note: This pipeline has not been tested in broad cases, please let the author (mingming.cao@rice.edu) know if there's any issue or suggestion. Thanks in advance!
+
+Updated date: 2022-6-17
 
 NEXT plan:
 - Provide example data
 - Package the script to conda
-- Upload R code and matlab code
-- cut_site_pos detection
-- 2-2
-- orientations primers-gRNA
 
 **Table of contents**
 - [Schematics](#schematics)
@@ -29,6 +27,9 @@ Note that our pipeline is used for downstream analysis after longread_umi pipeli
 1. Requirements & Dependencies
 `python` >= 3.6.0
 `minimap2` >= 2.17 [[2]](#2)
+`BLAT` version 35 [[3]](#3)
+
+Be sure to export the path to these programs.
 
 2. Install python packages
 ```bash
@@ -47,80 +48,88 @@ Download zip file from our github page.
 4. The SMRTseq_data_processing .py in the scrips folder is the main script to be used. 
 
 ## Quick-start
-For a complete running with 
 
+Note: For an efficient running, we use two references. One with flag 'g' is the amplicon product reference; Another with flag 'G' is the genome reference for large insertion mapping.
+
+In the script folder, you could run with the following line.
+
+ ```bash
+ python3 SMRTseq_data_processing.py \
+         -d <longread_umi output directory> \
+         -o <An existed folder to store output data> \
+         -st 2 \
+         -os 2 \
+         -m \
+         -g <amp ref.fasta> \
+         -ld \
+         -ld_ps <cutsite_pos> \
+         -li \
+         -ld_c \
+         -ld_cps <deletion_size_tolerance + 'd' + position_tolerance + 'l'>      
+ ```
+ 
+ The test running will be provided in the next update!
 
 ## Usage
-```bash
-usage: SMRTseq_data_processing.py [-h] -d DIRECTORY -o OUTPUT [-st {1,2}]
-                                  [-os {1,2}] [-r READS] [-m] [-g REFERENCE]
-                                  [-ld] [-ld_ps LARGE_DELETION_PARAMETERS]
-                                  [-ls] [-ld_c]
-                                  [-ld_cps LARGE_DELETION_CLUSTERING_PARAMETERS]
 
-longumi_read downstraem analysis: Version 4.0 this script is for extracting data
-from longumi_read pipeline output. You may use 'seqtk seq -a <fastq> > <fasta>
-to convert file if raw reads need to be processed.'
+```bash
+usage: SMRTseq_data_processing.py [-h] -d DIRECTORY -o OUTPUT [-st {1,2}] [-os {1,2}] [-r READS] [-m] [-g REFERENCE] [-ld] [-ld_ps LARGE_DELETION_PARAMETERS] [-li]
+                                  [-G GENOME] [-ld_c] [-ld_cps LARGE_DELETION_CLUSTERING_PARAMETERS] [-a]
+
+longumi_read downstraem analysis: Version 3 this script is for extracting data from longumi_read pipeline output. You may use 'seqtk seq -a <fastq> > <fasta> to
+convert file if raw reads need to be processed.'
 
 optional arguments:
   -h, --help            show this help message and exit
   -d DIRECTORY, --directory DIRECTORY
-                        Directory of outout folder with longumi_read pipeline,
-                        the output folder should contain a raconx2 subfolder.
+                        Directory of outout folder with longumi_read pipeline, the output folder should contain a raconx subfolder.
   -o OUTPUT, --output OUTPUT
                         Output directory. Output the completly organized file.
   -st {1,2}, --stats {1,2}
-                        Output the stats filem (default=2): -st 1: UMI_ID
-                        Read_IDs Consensus_read_sequence; -st 2: UMI_ID
-                        Read_count Consensus_read_sequence
+                        Output the stats filem (default=2): -st 1: UMI_ID Read_IDs Consensus_read_sequence; -st 2: UMI_ID Read_count Consensus_read_sequence
   -os {1,2}, --output_style {1,2}
-                        If also involve raw reads, can also produce a file
-                        contaning all reads. -os 1: UMI_ID Read_ID
-                        Read_sequence Centroid_ID. -os 2: UMI Consensus_seq
-                        Reads_seqs
+                        If also involve raw reads, can also produce a file contaning all reads. -os 1: UMI_ID Read_ID Read_sequence Centroid_ID. -os 2: UMI
+                        Consensus_seq Reads_seqs
   -r READS, --reads READS
                         Input PicBio ccs fasta file. (converted with seqtk)
-  -m, --mapping         Mapping all filetered read to reference genome using
-                        minimap2. For the large deletion analysis option,
-                        could ONLY use minimap2.
+  -m, --mapping         Mapping all filetered read to reference amp using minimap2. For the large deletion analysis option, could ONLY use minimap2.
   -g REFERENCE, --reference REFERENCE
-                        Alignment refence genome.
+                        Alignment reference amp.
   -ld, --large_deletion
-                        Large deletion calling, devide LDs as small INDELs or
-                        unmodified, 50bp-200bp, and >200bp.
+                        Large deletion calling, devide LDs as small INDELs or unmodified, 50bp-200bp, and >200bp.
   -ld_ps LARGE_DELETION_PARAMETERS, --large_deletion_parameters LARGE_DELETION_PARAMETERS
-                        Large deletion analysis parameters: FORMAT:
-                        cut_site_pos+c+tolerance_bp+t Default: 2778c10t
-  -ls, --large_insertion
+                        Large deletion analysis parameters:
+  -li, --large_insertion
                         Large insertion (>=50bp) calling.
+  -G GENOME, --genome GENOME
+                        Reference Genome.
   -ld_c, --large_deletion_clustering
-                        Large deletion clustering based on deletion size and
-                        deletion start site.
+                        Large deletion clustering based on deletion size and deletion start site.
   -ld_cps LARGE_DELETION_CLUSTERING_PARAMETERS, --large_deletion_clustering_parameters LARGE_DELETION_CLUSTERING_PARAMETERS
-                        Large deletion clustering parameters: FORMAT: deletion
-                        _size_tolenrance+d+deletion_position_tolerance+l
-                        Default: 10d10l
+                        Large deletion clustering parameters: FORMAT: deletion_size_tolenrance+d+deletion_position_tolerance+l Default: 10d10l
   -a, --all             Process all reads.
 
 ```
 
 ### Process
-[Gathering umibins list...]\
-[Reading from umibins...]\
-[Polishing umis...]\
-[Reading from raw fasta file...]\
-[Mapping reads with reads IDs...]\
-[Writing into files...]\
-[Generating fasta file for consensus seqs...]\
-[Alignment using minimap2...]\
-[Large deletions calling...]\
-[Large insertions calling...]\
-[Large deletions and large insertions rearranging...]\
-[Clustering large deletions (>200bp)...]\
-[Generating distribution figure for large deletions (>200bp)...]\
-[Generating distribution figure for clustered large deletions (>200bp)...]\
-[Removing temp files...]\
+[Gathering umibins list...]
+[Reading from umibins...]
+[Polishing umis...]
+[Reading from raw fasta file...]
+[Mapping reads with reads IDs...]
+[Writing into files...]
+[Generating fasta file for consensus seqs...]
+[Alignment using minimap2...]
+[Large deletions calling...]
+[Large insertions calling...]
+[Large deletions and large insertions rearranging...]
+[Clustering large deletions (>200bp)...]
+[Generating distribution figure for large deletions (>200bp)...]
+[Generating distribution figure for clustered large deletions (>200bp)...]
+[Removing temp files...]
+[Mapping large insertions to reference genome...]
 [Generating stats...]
+Program finished.
 
 ## References
 <a id="1">[1]</a> 
@@ -128,3 +137,6 @@ SM Karst, RM Ziels, RH Kirkegaard, EA Sørensen, D. McDonald, Q Zhu, R Knight, &
 
 <a id="1">[2]</a> 
 Li, H. (2018). Minimap2: pairwise alignment for nucleotide sequences. Bioinformatics, 34:3094-3100. doi:10.1093/bioinformatics/bty191 https://github.com/lh3/minimap2
+
+<a id="1">[3]</a> 
+BLAT: Kent WJ. BLAT - the BLAST-like alignment tool. Genome Res. 2002 Apr;12(4):656-64.
