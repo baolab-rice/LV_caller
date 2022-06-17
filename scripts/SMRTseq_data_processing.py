@@ -346,15 +346,32 @@ def distribute_LD():
     from distribution import distribution_generate
     distribution_generate(args.output + "_LD200_cluster.txt", int(args.large_deletion_parameters))
 
+def map_LI():
+    #Mapping large insertions to reference genome
+    print("[Mapping large insertions to reference genome...]")
+    from large_insertion_mapping import LI_mapping
+    LI_mapping (args.output, args.genome)
+
 def remove_temp():
 
     print("[Removing temp files...]")
-    arguments = ['rm {}*temp*'.format(args.output)]
+    arguments = ['rm ' + args.output + '*temp*']
     process = Popen(args = arguments,
                     shell=True,
                     stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
     del(stderr)
+
+def generate_stats():
+
+    print("[Generating stats...]")
+    arguments = ['./stats.sh -i {} > {}'.format(args.output[:-15],args.output + "_output_stats.txt")]
+    process = Popen(args = arguments,
+                    shell=True,
+                    stdout=PIPE, stderr=PIPE)
+    stdout, stderr = process.communicate()
+    del(stderr)
+
 
 def main():
 
@@ -375,6 +392,8 @@ def main():
             large_deletion_clustering()
             distribute_LD()
             remove_temp()
+            map_LI()
+        generate_stats()
 
     print("Program finished.")
 
@@ -405,9 +424,9 @@ if __name__ == "__main__":
 
     # Alignment
     parser.add_argument('-m','--mapping',default=False,action='store_true',\
-                        help="Mapping all filetered read to reference genome using minimap2.\
+                        help="Mapping all filetered read to reference amp using minimap2.\
                             For the large deletion analysis option, could ONLY use minimap2.")
-    parser.add_argument('-g','--reference',help="Alignment refence genome.")
+    parser.add_argument('-g','--reference',help="Alignment reference amp.")
 
     # Large deletions calling
     parser.add_argument('-ld','--large_deletion',default=False,action='store_true',\
@@ -419,6 +438,7 @@ if __name__ == "__main__":
     # Large insertions calling 
     parser.add_argument('-li','--large_insertion',default=False,action='store_true',\
                         help="Large insertion (>=50bp) calling.")
+    parser.add_argument('-G','--genome',default=False,help="Reference Genome.")
 
     # Large deletion clustering
     parser.add_argument('-ld_c','--large_deletion_clustering',default=False,action='store_true',\
