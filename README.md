@@ -135,12 +135,12 @@ Program finished.
 
 ## Output Format
 1. result.txt
-| UMI_ID     |
-|------------|
+| UMI_ID             |
+|--------------------|
 | Consensus sequence |
-| sequence      |
-| Read1      |
-| sequence     |
+| sequence           |
+| Read1              |
+| sequence           |
 3. 
 
 | Chromosome | Start    | End      | Read ID                                      | Score | Strand |
