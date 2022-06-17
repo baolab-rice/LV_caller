@@ -136,12 +136,12 @@ Program finished.
 ## Output Format
 1. result.txt
 
-| UMI_ID             | Start    | Start    |
-|--------------------|----------|----------|
-| Consensus sequence | 59136655 | Start    | 
-| sequence           | 59136655 | Start    |
-| Read1              | 59136655 | Start    |
-| sequence           | 59136655 | Start    |
+| UMI_ID             |
+|--------------------|
+| Consensus sequence |
+| sequence           | 
+| Read1              |
+| sequence           |
 
 3. 
 
