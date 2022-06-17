@@ -136,19 +136,14 @@ Program finished.
 ## Output Format
 1. result.txt
 
-| UMI_ID             |
-|--------------------|
-| Consensus sequence |
-| sequence           | 
-| Read1              |
-| sequence           |
-
-3. 
-
-| Chromosome | Start    | End      | Read ID                                      | Score | Strand |
-|------------|----------|----------|----------------------------------------------|-------|--------|
-| chr11      | 59136655 | 59136956 | M04808:132:000000000-CTP75:1:2107:19955:2557 | 60    | -      |
-| chr11      | 59138619 | 59138657 | M04808:132:000000000-CTP75:1:2107:19955:2557 | 60    | -      |
+| UMI_ID                  |
+|-------------------------|
+| Consensus sequence: seq |
+| Read1: seq              | 
+| Read2: seq              |
+| Consensus sequence: seq |
+| Read1: seq              | 
+| Read2: seq              |
 
 
 ## References
