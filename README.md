@@ -2,7 +2,7 @@
 
 A downstream analysis pipeline focusing on large gene modification (large variants) after CRISPR/Cas9 editing. The pipeline takes the output from longread_umi[[1]](#1) pipeline using SMRTseq data and generates a series of files and figures for large gene modification analysis.
 
-Note: This pipeline has not been tested in broad cases, please let the author (mingming.cao@rice.edu) know if there's any issue or suggestion. Thanks in advance!
+Note: This pipeline has not been tested with broad cases, please let the author (mingming.cao@rice.edu) know if there's any issue or suggestion. Thanks in advance!
 
 Updated date: 2022-6-17
 
