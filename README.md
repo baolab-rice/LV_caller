@@ -112,24 +112,24 @@ optional arguments:
 ```
 
 ### Process
-[Gathering umibins list...]
-[Reading from umibins...]
-[Polishing umis...]
-[Reading from raw fasta file...]
-[Mapping reads with reads IDs...]
-[Writing into files...]
-[Generating fasta file for consensus seqs...]
-[Alignment using minimap2...]
-[Large deletions calling...]
-[Large insertions calling...]
-[Large deletions and large insertions rearranging...]
-[Clustering large deletions (>200bp)...]
-[Generating distribution figure for large deletions (>200bp)...]
-[Generating distribution figure for clustered large deletions (>200bp)...]
-[Removing temp files...]
-[Mapping large insertions to reference genome...]
-[Generating stats...]
-Program finished.
+[Gathering umibins list...] \
+[Reading from umibins...] \
+[Polishing umis...] \
+[Reading from raw fasta file...] \
+[Mapping reads with reads IDs...] \
+[Writing into files...] \
+[Generating fasta file for consensus seqs...] \
+[Alignment using minimap2...] \
+[Large deletions calling...] \
+[Large insertions calling...] \
+[Large deletions and large insertions rearranging...] \
+[Clustering large deletions (>200bp)...] \
+[Generating distribution figure for large deletions (>200bp)...] \
+[Generating distribution figure for clustered large deletions (>200bp)...] \
+[Removing temp files...] \
+[Mapping large insertions to reference genome...] \
+[Generating stats...] \
+Program finished. \
 
 ## References
 <a id="1">[1]</a> 
