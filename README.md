@@ -138,10 +138,10 @@ Program finished.
 
 | UMI_ID                  |
 |-------------------------|
-| Consensus sequence: seq |
-| Read1: seq              | 
-| Read2: seq              |
-| Consensus sequence: seq |
+| Consensus sequence1: seq |
+| Read1: seq               | 
+| Read2: seq               |
+| Consensus sequence2: seq |
 | Read1: seq              | 
 | Read2: seq              |
 
