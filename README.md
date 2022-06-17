@@ -129,7 +129,7 @@ optional arguments:
 [Removing temp files...] \
 [Mapping large insertions to reference genome...] \
 [Generating stats...] \
-Program finished. \
+Program finished. 
 
 ## References
 <a id="1">[1]</a> 
