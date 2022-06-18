@@ -16,7 +16,7 @@ NEXT plan:
 - [Quick start](#quick-start)
 - [Usage](#usage)
 - [Process](#Process)
-- [Output Format](#Output Format)
+- [Output Format](#output format)
 - [References](#references)
 
 ## Schematics
