@@ -136,6 +136,15 @@ Program finished.
 ## Output Format
 1. result.txt
 
+Output option 1
+
+| UMI_ID   | Read_ID | Read_sequence | Centroid_ID |
+|----------|---------|---------------|-------------|
+| umi1     | ReadID1 | seq1          | ID1         |
+| umi2     | ReadID2 | seq2          | ID2         |
+
+Output option 2
+
 | UMI_ID                  |
 |-------------------------|
 | Consensus sequence1: seq |
@@ -147,10 +156,19 @@ Program finished.
 
 2. result_stats,.txt
 
+Output option1
+
+| UMI_ID   | Read_IDs | Consensus_read_sequence |
+|----------|----------|-------------------------|
+| umi1     | ID1,ID2..| seq1                    |
+| umi2     | IDn,IDm..| seq2                    |
+
+Output option2
+
 | UMI_ID   | Read_count | Consensus_read_sequence |
 |----------|------------|-------------------------|
-| umi1002  | 20         | seq1                    |
-| umi1003  | 18         | seq2                    |
+| umi1     | 20         | seq1                    |
+| umi2     | 18         | seq2                    |
 
 ## References
 <a id="1">[1]</a> 
