@@ -147,8 +147,8 @@ Output option 1
 
 Output option 2
 
-|--------------------------|
 | UMI_ID                   |
+|--------------------------|
 | Consensus sequence1: seq |
 | Read1: seq               | 
 | Read2: seq               |
@@ -224,6 +224,7 @@ Clustered large deletions.
 Final output stats.
 
 | Ref_CCS_reads:             |
+|----------------------------|
 | 74424                      |
 | UMI_consensus:             |
 | 7158                       |
