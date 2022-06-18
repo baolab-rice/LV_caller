@@ -133,7 +133,7 @@ optional arguments:
 [Generating stats...] \
 Program finished. 
 
-## Output Format
+## Output
 1. result.txt
 
 Rearrangement of UMIs and reads with sequences.
