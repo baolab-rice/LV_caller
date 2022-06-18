@@ -31,7 +31,7 @@ echo "LD50-200:"
 LD50=$(wc -l ${pathname}/outputs/result_LD50to200.txt | awk '{print $1}')
 echo "$LD50 -1" | bc
 
-echo "samllINDEL:"
+echo "smallINDEL:"
 INDEL=$(wc -l ${pathname}/outputs/result_small_INDELs.txt | awk '{print $1}')
 echo "$INDEL -1" | bc
 
