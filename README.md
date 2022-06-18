@@ -145,6 +145,12 @@ Program finished.
 | Read1: seq              | 
 | Read2: seq              |
 
+2. result_stats,.txt
+
+| UMI_ID   | Read_count | Consensus_read_sequence |
+|----------|------------|-------------------------|
+| umi1002  | 20         | seq1                    |
+| umi1003  | 18         | seq2                    |
 
 ## References
 <a id="1">[1]</a> 
