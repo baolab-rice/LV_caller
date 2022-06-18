@@ -134,7 +134,7 @@ optional arguments:
 Program finished. 
 
 ## Output
-1. result.txt
+**1. result.txt**
 
 Rearrangement of UMIs and reads with sequences.
 
@@ -156,7 +156,7 @@ Output option 2
 | Read1: seq               | 
 | Read2: seq               |
 
-2. result_stats.txt
+**2. result_stats.txt**
 
 Inital stats with UMI_ID and read binned to that UMI with ID or counts.
 
@@ -174,7 +174,7 @@ Output option2
 | umi1     | 20         | seq1                    |
 | umi2     | 18         | seq2                    |
 
-3. result_invalidated_umis.txt
+**3. result_invalidated_umis.txt**
 
 UMIs those consensus reads could not be mapped to amplicon/gene reference.
 
@@ -183,7 +183,7 @@ UMIs those consensus reads could not be mapped to amplicon/gene reference.
 | umi1     |
 | umi2     |
 
-4. result_LD200.txt result_LD50to200.txt 
+**4. result_LD200.txt result_LD50to200.txt **
 
 Large deletions grouped by size, applying >=200bp and 50bp-200bp.
 
@@ -192,7 +192,7 @@ Large deletions grouped by size, applying >=200bp and 50bp-200bp.
 | umi10005	| 2853	 | 3175	| 322            	| no               | CATACGA... | None                         |
 | umi10010	| 2580 	| 2849	| 269	            | yes              | CGGCATG... | [(2580, 2849), (3564, 4197)] |
 
-5. result_small_INDELs.txt result_unmodified.txt
+**5. result_small_INDELs.txt result_unmodified.txt**
 
 Reads with small INDELs or reads without any modification.
 
@@ -201,7 +201,7 @@ Reads with small INDELs or reads without any modification.
 | umi1  | seq        | 
 | umi2  | seq        | 
 
-6. result_LI_with_LD200_besthit.txt result_LI_with_LD50_besthit.txt result_LI_with_other_besthit.txt
+**6. result_LI_with_LD200_besthit.txt result_LI_with_LD50_besthit.txt result_LI_with_other_besthit.txt**
 
 Large insertions mapped to reference genomem, grouped with LI and LD together or with sINDELs/unmodified reads.
 
@@ -210,7 +210,7 @@ Large insertions mapped to reference genomem, grouped with LI and LD together or
 | umi5296 |	chr19	| 475	  | 38	      | +	     | 27732180	| 27739479 |
 | umi122	 | chr11	| 580	  | 5	       | +	     | 5248622	 | 5249208  |
 
-7. result_LD200_cluster.txt
+**7. result_LD200_cluster.txt**
 
 Clustered large deletions.
 
@@ -219,7 +219,7 @@ Clustered large deletions.
 | 1            |	2660 	| 2849 | 109	   | 
 | 6     	      | 2828	 | 3031	| 203	   | 
 
-8. result_output_stats.txt
+**8. result_output_stats.txt**
 
 Final output stats.
 
@@ -249,7 +249,7 @@ Final output stats.
 | clusters in LD200:         |
 | 495                        |
 
-9. result_LD200.svg result_LD200_cluster.svg
+**9. result_LD200.svg result_LD200_cluster.svg**
 
 The distribution plotting.
 
