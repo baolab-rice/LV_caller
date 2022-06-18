@@ -249,6 +249,12 @@ Final output stats.
 | clusters in LD200:         |
 | 495                        |
 
+9. result_LD200.svg result_LD200_cluster.svg
+
+The distribution plotting.
+
+![distribution](Distribution.svg)
+
 ## References
 <a id="1">[1]</a> 
 SM Karst, RM Ziels, RH Kirkegaard, EA Sørensen, D. McDonald, Q Zhu, R Knight, & M Albertsen. (2020). Enabling high-accuracy long-read amplicon sequences using unique molecular identifiers with Nanopore or PacBio sequencing. bioRxiv, 6459039. https://github.com/SorenKarst/longread_umi
