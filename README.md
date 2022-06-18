@@ -147,6 +147,7 @@ Output option 1
 
 Output option 2
 
+|--------------------------|
 | UMI_ID                   |
 | Consensus sequence1: seq |
 | Read1: seq               | 
