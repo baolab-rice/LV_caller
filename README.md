@@ -8,7 +8,7 @@ Updated date: 2022-6-17
 
 NEXT plan:
 - Provide example data
-- Package the script to conda
+- Test stability
 
 **Table of contents**
 - [Schematics](#schematics)
