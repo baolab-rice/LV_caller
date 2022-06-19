@@ -183,7 +183,7 @@ UMIs those consensus reads could not be mapped to amplicon/gene reference.
 | umi1     |
 | umi2     |
 
-**4. result_LD200.txt result_LD50to200.txt **
+**4. result_LD200.txt result_LD50to200.txt**
 
 Large deletions grouped by size, applying >=200bp and 50bp-200bp.
 
