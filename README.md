@@ -16,7 +16,7 @@ Updated date: 2022-7-6
 - [References](#references)
 
 ## Schematics
-![Schematics](Schematics.png)
+![Schematics](Schematic.png)
 
 ## Installation 
 
@@ -65,8 +65,6 @@ In the script folder, you could run with the following line.
          -ld_c \
          -ld_cps <deletion_size_tolerance + 'd' + position_tolerance + 'l'>      
  ```
- 
- The test running will be provided in the next update!
 
 ## Usage
 
