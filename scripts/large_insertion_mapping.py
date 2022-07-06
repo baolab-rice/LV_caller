@@ -27,7 +27,7 @@ def formatting_psl(filename):
     del(stderr)    
 
     a1 = "awk '!a[$10]++' " + temp
-    a2 = "| awk -v OFS='\t' 'BEGIN{print "UMI\tChr\tMatch\tMismatch\tStrand\tStart\tEnd"} ; $10 ~ /^umi*/ {print$10,$14,$1,$2,$9,$16,$17}' >" + output
+    a2 = "| awk -v OFS='\t' 'BEGIN{print \"UMI\tChr\tMatch\tMismatch\tStrand\tStart\tEnd\"} ; $10 ~ /^umi*/ {print$10,$14,$1,$2,$9,$16,$17}' >" + output
     arguments = [a1+a2]
     process = Popen(args = arguments,
                     shell=True,
