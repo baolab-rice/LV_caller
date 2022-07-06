@@ -201,7 +201,7 @@ Large deletions grouped by size, applying >=200bp and 50bp-200bp.
 | umi10005	| 2853	 | 3175	| 322            	| no               | CATACGA... | None                         |
 | umi10010	| 2580 	| 2849	| 269	            | yes              | CGGCATG... | [(2580, 2849), (3564, 4197)] |
 
-**5. result_small_INDELs.txt result_unmodified.txt**
+**5. result_small_INDELs_and_unmodified.txt**
 
 Reads with small INDELs or reads without any modification.
 
@@ -209,6 +209,13 @@ Reads with small INDELs or reads without any modification.
 |-------|------------|
 | umi1  | seq        | 
 | umi2  | seq        | 
+
+This file can be converted to .fasta using:
+
+```
+cat ./outputs/result_small_INDELs_and_unmod.txt | sed 's/umi/>umi/g' | grep "umi" | sed 's/\t/\n/g' > SU.fasta
+```
+
 
 **6. result_LI_with_LD200_besthit.txt result_LI_with_LD50_besthit.txt result_LI_with_other_besthit.txt**
 
