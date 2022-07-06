@@ -368,7 +368,7 @@ def remove_temp():
 def generate_stats():
 
     print("[Generating stats...]")
-    arguments = ['./stats.sh -i {} > {}'.format(args.output[:-15],args.output + "_output_stats.txt")]
+    arguments = ['bash stats.sh -i {} > {}'.format(args.output[:-15],args.output + "_output_stats.txt")]
     process = Popen(args = arguments,
                     shell=True,
                     stdout=PIPE, stderr=PIPE)
