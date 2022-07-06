@@ -31,13 +31,9 @@ echo "LD50-200:"
 LD50=$(wc -l ${pathname}/outputs/result_LD50to200.txt | awk '{print $1}')
 echo "$LD50 -1" | bc
 
-echo "smallINDEL:"
-INDEL=$(wc -l ${pathname}/outputs/result_small_INDELs.txt | awk '{print $1}')
+echo "smallINDEL and unmodified:"
+INDEL=$(wc -l ${pathname}/outputs/result_small_INDELs_and_unmod.txt | awk '{print $1}')
 echo "$INDEL -1" | bc
-
-echo "unmodified:"
-UN=$(wc -l ${pathname}/outputs/result_unmodified.txt | awk '{print $1}')
-echo "$UN -1" | bc
 
 echo "LI_with_LD200:"
 LI1=$(wc -l ${pathname}/outputs/result_LI_with_LD200.fasta | awk '{print $1}')

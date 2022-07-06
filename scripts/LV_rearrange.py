@@ -1,3 +1,4 @@
+import sys
 from SMRTseq_data_processing import read_raw_fasta
 
 def read_inputs(filename):
@@ -16,14 +17,12 @@ def rearrange(filename):
     file_LI = filename + "_LI_temp.fasta"
     file_200 = filename + "_LD200_temp.txt"
     file_50 = filename + "_LD50to200_temp.txt"
-    file_small = filename + "_small_INDELs_temp.txt"
-    file_un = filename + "_unmodified_temp.txt"
+    file_small_and_unmod = filename + "_small_INDELs_and_unmod_temp.txt"
 
     umis_LI = read_raw_fasta(file_LI)
     umis_LD200 = read_inputs(file_200)
     umis_LD50 = read_inputs(file_50)
-    umis_small = read_inputs(file_small)
-    umis_un = read_inputs(file_un)
+    umis_small = read_inputs(file_small_and_unmod)
 
     LD200_and_LI = {}
     LD50_and_LI = {}
@@ -38,17 +37,13 @@ def rearrange(filename):
         if umi in umis_small.keys():
             LI_others[umi] = umis_LI[umi]
             del umis_small[umi]
-        if umi in umis_un.keys():
-            LI_others[umi] = umis_LI[umi]
-            del umis_un[umi]
 
     file_LI_LD200 = filename + "_LI_with_LD200.fasta"
     file_LI_LD50 = filename + "_LI_with_LD50.fasta"
     file_LI_other = filename + "_LI_other.fasta"
     file_200_ = filename + "_LD200.txt"
     file_50_ = filename + "_LD50to200.txt"
-    file_small_ = filename + "_small_INDELs.txt"
-    file_un_ = filename + "_unmodified.txt"
+    file_small_ = filename + "_small_INDELs_and_unmod.txt"
 
     f = open(file_200_,'w')
     f.write("UMI\tStart\tEnd\tDeletion_length\tIf_cover_cutsite\tRead\tAlternative_deletion\n")
@@ -70,13 +65,7 @@ def rearrange(filename):
         f.write(line)
         f.write('\n') 
     f.close()
-
-    f = open(file_un_,'w')
-    f.write("UMI\tRead\n")
-    for umi,line in umis_un.items():
-        f.write(line)
-        f.write('\n') 
-    f.close()    
+  
 
     f = open(file_LI_LD200,'w')
     for umi in LD200_and_LI.keys():
@@ -99,3 +88,8 @@ def rearrange(filename):
         f.write('\n')
     f.close()
 
+def main():
+    rearrange(sys.argv[1][:-9])
+
+if __name__ == '__main__':
+    main()

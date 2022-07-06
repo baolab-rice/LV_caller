@@ -48,7 +48,8 @@ def check_if_empty(element,name):
 ## Extract UMI bins names
 def get_umi_bin_list(_dir):
 
-    arguments = ['ls {}/raconx3/ | xargs'.format(_dir)]
+    raconx = "/raconx" + args.raconx + "/"
+    arguments = ['ls {}{} | xargs'.format(_dir,raconx)]
     process = Popen(args = arguments,
                     shell=True,
                     stdout=PIPE, stderr=PIPE)
@@ -57,7 +58,7 @@ def get_umi_bin_list(_dir):
 
     umibins_raw = stdout.decode("utf-8")
     umibins_names = [x.strip() for x in umibins_raw.split(" ") if "umi" in x]
-    umibins_dirs = [_dir + "/raconx3/" + x.strip() for x in umibins_raw.split(" ") if "umi" in x]
+    umibins_dirs = [_dir + raconx + x.strip() for x in umibins_raw.split(" ") if "umi" in x]
 
     return umibins_names,umibins_dirs
 
@@ -164,7 +165,7 @@ def read_raw_fasta(filename):
     with open(filename,'r') as f:
         for line in f:
             if ">" in line:
-                title = line[1:].strip()
+                title = line[1:].strip().split(" ")[0]
             else:
                 reads[title] = line.strip()
         f.close()
@@ -176,7 +177,9 @@ def map_read_with_id(readids,raw_reads):
 
     temp_dict = {}
     for readid in readids:
-        temp_dict[readid] = raw_reads[readid]
+        try:
+            temp_dict[readid] = raw_reads[readid]
+        except:pass
 
     return temp_dict
 
@@ -330,32 +333,32 @@ def large_variants_rearrange():
 
 def large_deletion_clustering():
 
-    print("[Clustering large deletions (>200bp)...]")
+    print("[Clustering large deletions (>=200bp)...]")
     inputfile = args.output + "_LD200.txt"
     from clustering import cluster_generate
     cluster_generate(inputfile, args.large_deletion_clustering_parameters)
 
 def distribute_LD():
     #Gernate distribution figure
-    print("[Generating distribution figure for large deletions (>200bp)...]")
+    print("[Generating distribution figure for large deletions (>=200bp)...]")
     from distribution import distribution_generate
     distribution_generate(args.output + "_LD200.txt", int(args.large_deletion_parameters))
 
     #Gernate distribution figure
-    print("[Generating distribution figure for clustered large deletions (>200bp)...]")
+    print("[Generating distribution figure for clustered large deletions (>=200bp)...]")
     from distribution import distribution_generate
     distribution_generate(args.output + "_LD200_cluster.txt", int(args.large_deletion_parameters))
 
 def map_LI():
     #Mapping large insertions to reference genome
-    print("[Mapping large insertions to reference genome...]")
+    print("[Mapping large insertions (>=50bp) to reference genome...]")
     from large_insertion_mapping import LI_mapping
     LI_mapping (args.output, args.genome)
 
 def remove_temp():
 
     print("[Removing temp files...]")
-    arguments = ['rm ' + args.output + '*temp*']
+    arguments = ['rm ' + args.output[:-6] + '*temp*']
     process = Popen(args = arguments,
                     shell=True,
                     stdout=PIPE, stderr=PIPE)
@@ -431,7 +434,7 @@ if __name__ == "__main__":
     # Large deletions calling
     parser.add_argument('-ld','--large_deletion',default=False,action='store_true',\
                         help="Large deletion calling, devide LDs as small INDELs or unmodified, \
-                            50bp-200bp, and >200bp.")
+                            50bp-200bp, and >=200bp.")
     parser.add_argument('-ld_ps','--large_deletion_parameters',\
                         help="Large deletion analysis parameters:")
 
@@ -451,6 +454,9 @@ if __name__ == "__main__":
     # For all reads
     parser.add_argument('-a','--all',default=False,action='store_true',\
                         help="Process all reads.")
+    
+    parser.add_argument('-rxn','--raconx',default="3",\
+                        help="raconx number used in longread_umi pipeline (default:3).")
 
     args = parser.parse_args()
 

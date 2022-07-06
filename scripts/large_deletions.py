@@ -167,14 +167,12 @@ def small_INDEL(dictname, cutsite):
     for umi in dictname.keys():
         start = int(dictname[umi]['start_pos'])
         for pos in dictname[umi]['pos']:
-            if re.match('[MD=NX]',pos[1]):
+            if start >= cutsite-1 and re.match('[I]',pos[1]):
+                umis_sINDEL[umi] = dictname[umi]
+                break
+            elif re.match('[MD=NX]',pos[1]):
                 start = int(pos[0]) + start
-                if start > cutsite:
-                    if re.match('[D]',pos[1]):
-                        umis_sINDEL[umi] = dictname[umi]
-                    break
-                # Assum insertion only happends at cutsite
-                elif start == cutsite and re.match('[ID]',pos[1]):
+                if start >= cutsite -1 and re.match('[D]',pos[1]):
                     umis_sINDEL[umi] = dictname[umi]
                     break
     
@@ -245,24 +243,26 @@ def large_deletion_calling(filename,code,mode):
     dict_200,dict_50,dict_small,dict_un,dict_non = select_large_deletions(umis,code)
     file_200 = filename.split("_alignment")[0] + "_LD200_temp.txt"
     file_50 = filename.split("_alignment")[0] + "_LD50to200_temp.txt"
-    file_small = filename.split("_alignment")[0] + "_small_INDELs_temp.txt"
-    file_un = filename.split("_alignment")[0] + "_unmodified_temp.txt"
+    file_small_and_unmod = filename.split("_alignment")[0] + "_small_INDELs_and_unmod_temp.txt"
     file_discard = filename.split("_alignment")[0] + "_invalidated_umis.txt"
+
+    dict_small_and_unmod = {**dict_small, **dict_un}
 
     write_output_large(dict_200,file_200)
     write_output_large(dict_50,file_50)
-    write_output_small(dict_small,file_small)
-    write_output_small(dict_un,file_un)
+    write_output_small(dict_small_and_unmod,file_small_and_unmod)
     write_output_invalidated_umis(dict_non,file_discard)
 
     return len(dict_200)
 
 def main():
     
-    large_deletion_calling(sys.argv[1],"2816c10t","all")
+    large_deletion_calling(sys.argv[1],sys.argv[2],"umi")
     # umis = read_from_sam(sys.argv[1])
     # umis = select_large_deletions(umis)
     # output(umis)
 
 if __name__ == '__main__':
     main()
+
+# 20220619 sINDEL correction
