@@ -4,11 +4,7 @@ A downstream analysis pipeline focusing on large gene modification (large varian
 
 Note: This pipeline has not been tested with broad cases, please let the author (mingming.cao@rice.edu) know if there's any issue or suggestion. Thanks in advance!
 
-Updated date: 2022-6-17
-
-NEXT plan:
-- Provide example data
-- Test stability
+Updated date: 2022-7-6
 
 **Table of contents**
 - [Schematics](#schematics)
@@ -84,21 +80,29 @@ convert file if raw reads need to be processed.'
 optional arguments:
   -h, --help            show this help message and exit
   -d DIRECTORY, --directory DIRECTORY
-                        Directory of outout folder with longumi_read pipeline, the output folder should contain a raconx subfolder.
+                        Directory of outout folder with longumi_read pipeline,
+                        the output folder should contain a raconx subfolder.
   -o OUTPUT, --output OUTPUT
                         Output directory. Output the completly organized file.
   -st {1,2}, --stats {1,2}
-                        Output the stats filem (default=2): -st 1: UMI_ID Read_IDs Consensus_read_sequence; -st 2: UMI_ID Read_count Consensus_read_sequence
+                        Output the stats filem (default=2): -st 1: UMI_ID
+                        Read_IDs Consensus_read_sequence; -st 2: UMI_ID
+                        Read_count Consensus_read_sequence
   -os {1,2}, --output_style {1,2}
-                        If also involve raw reads, can also produce a file contaning all reads. -os 1: UMI_ID Read_ID Read_sequence Centroid_ID. -os 2: UMI
-                        Consensus_seq Reads_seqs
+                        If also involve raw reads, can also produce a file
+                        contaning all reads. -os 1: UMI_ID Read_ID
+                        Read_sequence Centroid_ID. -os 2: UMI Consensus_seq
+                        Reads_seqs
   -r READS, --reads READS
                         Input PicBio ccs fasta file. (converted with seqtk)
-  -m, --mapping         Mapping all filetered read to reference amp using minimap2. For the large deletion analysis option, could ONLY use minimap2.
+  -m, --mapping         Mapping all filetered read to reference amp using
+                        minimap2. For the large deletion analysis option,
+                        could ONLY use minimap2.
   -g REFERENCE, --reference REFERENCE
                         Alignment reference amp.
   -ld, --large_deletion
-                        Large deletion calling, devide LDs as small INDELs or unmodified, 50bp-200bp, and >200bp.
+                        Large deletion calling, devide LDs as small INDELs or
+                        unmodified, 50bp-200bp, and >=200bp.
   -ld_ps LARGE_DELETION_PARAMETERS, --large_deletion_parameters LARGE_DELETION_PARAMETERS
                         Large deletion analysis parameters:
   -li, --large_insertion
@@ -106,10 +110,16 @@ optional arguments:
   -G GENOME, --genome GENOME
                         Reference Genome.
   -ld_c, --large_deletion_clustering
-                        Large deletion clustering based on deletion size and deletion start site.
+                        Large deletion clustering based on deletion size and
+                        deletion start site.
   -ld_cps LARGE_DELETION_CLUSTERING_PARAMETERS, --large_deletion_clustering_parameters LARGE_DELETION_CLUSTERING_PARAMETERS
-                        Large deletion clustering parameters: FORMAT: deletion_size_tolenrance+d+deletion_position_tolerance+l Default: 10d10l
+                        Large deletion clustering parameters: FORMAT: deletion
+                        _size_tolenrance+d+deletion_position_tolerance+l
+                        Default: 10d10l
   -a, --all             Process all reads.
+  -rxn RACONX, --raconx RACONX
+                        raconx number used in longread_umi pipeline
+                        (default:3).
 
 ```
 
@@ -125,11 +135,11 @@ optional arguments:
 [Large deletions calling...] \
 [Large insertions calling...] \
 [Large deletions and large insertions rearranging...] \
-[Clustering large deletions (>200bp)...] \
-[Generating distribution figure for large deletions (>200bp)...] \
-[Generating distribution figure for clustered large deletions (>200bp)...] \
+[Clustering large deletions (>=200bp)...] \
+[Generating distribution figure for large deletions (>=200bp)...] \
+[Generating distribution figure for clustered large deletions (>=200bp)...] \
 [Removing temp files...] \
-[Mapping large insertions to reference genome...] \
+[Mapping large insertions (>=50bp) to reference genome...] \
 [Generating stats...] \
 Program finished. 
 
