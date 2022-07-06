@@ -49,7 +49,7 @@ Download zip file from our github page.
 
 Note: For an efficient running, we use two references. One with flag 'g' is the amplicon product reference; Another with flag 'G' is the genome reference for large insertion mapping.
 
-In the script folder, you could run with the following line.
+In the script folder, you could run with the following line. (Note:rxn is for identifying the folder from longread_umi, usr may manually find it.)
 
  ```bash
  python3 SMRTseq_data_processing.py \
@@ -63,7 +63,8 @@ In the script folder, you could run with the following line.
          -ld_ps <cutsite_pos> \
          -li \
          -ld_c \
-         -ld_cps <deletion_size_tolerance + 'd' + position_tolerance + 'l'>      
+         -ld_cps <deletion_size_tolerance + 'd' + position_tolerance + 'l'>   
+         -rxn <3>
  ```
 
 ## Usage
