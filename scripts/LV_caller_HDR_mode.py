@@ -8,7 +8,7 @@ from large_deletions import large_deletion_calling
 from LV_rearrange import rearrange
 
 def rename_file(filename1,filename2):
-    arguments = ['mv ' + filename1 + ' > ' + filename2]
+    arguments = ['mv ' + filename1 + filename2]
     process = Popen(args = arguments,
                     shell=True,
                     stdout=PIPE, stderr=PIPE)
