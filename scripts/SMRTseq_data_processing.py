@@ -302,7 +302,8 @@ def generate_filtered_fasta(umis):
 
 def alignment():
     print("[Alignment using minimap2...]")
-    long_read_alignment_minimap2(args.reference,args.output)
+    inputfile = args.output + "_consensus.fasta"
+    long_read_alignment_minimap2(args.reference,inputfile,args.output)
 
 def HDR_mode(umis):
     print("[Running in HDR mode...]")

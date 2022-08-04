@@ -30,12 +30,11 @@ def generate_fasta_all(dictname, filename):
     f.close()
 
 # Long read alignment with minimap2
-def long_read_alignment_minimap2(reference,filename):
+def long_read_alignment_minimap2(reference,inputfile,filename):
 
     if reference == None:
         print("No refence genome for alignment assigned, please input a reference with -r <reference_genome>")
     else:
-        inputfile = filename + "_consensus.fasta"
         outputfile = filename + "_alignment.sam"
         logfile = filename + "_alignment.log"
         arguments = ['minimap2 -ax splice {} {} > {}'\
