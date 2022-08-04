@@ -43,7 +43,7 @@ def calculate_insertion_pos(dictname,output):
 def select_large_insertions(dictname,output):
 
     dictname = seperate_cigar(dictname)
-    dictname  = large_insertions(dictname)
+    dictname = large_insertions(dictname)
     dictname = calculate_insertion_pos(dictname,output)
     
     return dictname

@@ -293,16 +293,21 @@ def output_UMIs(umis):
     print("[Writing into files...]")
     output_stats(args.output,umis)
 
-def alignment(umis):
-
+def generate_filtered_fasta(umis):
     print("[Generating fasta file for consensus seqs...]")
     if args.all == True:
         generate_fasta_all(umis,args.output)
     else:
         generate_fasta(umis,args.output)
+
+def alignment():
     print("[Alignment using minimap2...]")
     long_read_alignment_minimap2(args.reference,args.output)
 
+def HDR_mode(umis):
+    print("[Running in HDR mode...]")
+    from LV_caller_HDR_mode import HDR_mode_main
+    HDR_mode_main(umis,args.reference,args.output)
 
 def large_deletion():
 
@@ -383,20 +388,23 @@ def main():
 
     umis = get_umis()
     output_UMIs(umis)
+    generate_filtered_fasta(umis)
 
-    if args.mapping == True and args.reference != None:
-        alignment(umis)
+    if args.mapping == True and args.reference != None and args.HDR_mode == False:
+        alignment()
+        if args.large_deletion == True:
+            LD200_size = large_deletion()
+            large_insertion()
+            large_variants_rearrange()
+            if args.large_deletion_clustering == True and LD200_size != 0:
+                large_deletion_clustering()
+                distribute_LD()
+                remove_temp()
+                map_LI()
+            generate_stats()  
+    elif args.reference != None and args.HDR_mode == True:
+        HDR_mode(umis)
     
-    if args.large_deletion == True:
-        LD200_size = large_deletion()
-        large_insertion()
-        large_variants_rearrange()
-        if args.large_deletion_clustering == True and LD200_size != 0:
-            large_deletion_clustering()
-            distribute_LD()
-            remove_temp()
-            map_LI()
-        generate_stats()
 
     print("Program finished.")
 
@@ -429,7 +437,8 @@ if __name__ == "__main__":
     parser.add_argument('-m','--mapping',default=False,action='store_true',\
                         help="Mapping all filetered read to reference amp using minimap2.\
                             For the large deletion analysis option, could ONLY use minimap2.")
-    parser.add_argument('-g','--reference',help="Alignment reference amp.")
+    parser.add_argument('-g','--reference',help="Alignment reference amp. If use HDR mode, \
+        the expected HDR amplicon sequence is required.")
 
     # Large deletions calling
     parser.add_argument('-ld','--large_deletion',default=False,action='store_true',\
@@ -450,10 +459,13 @@ if __name__ == "__main__":
                         help="Large deletion clustering parameters: \
                         FORMAT: deletion_size_tolenrance+d+deletion_position_tolerance+l \
                         Default: 10d10l")
-    
+    # HDR mode
+    parser.add_argument('-hdr','--HDR_mode',default=False,action='store_true',\
+                        help="Running in HDR mode. The expected HDR amplicon sequence is required as a reference in -g.")
+ 
     # For all reads
     parser.add_argument('-a','--all',default=False,action='store_true',\
-                        help="Process all reads.")
+                        help="Process all reads. ")
     
     parser.add_argument('-rxn','--raconx',default="3",\
                         help="raconx number used in longread_umi pipeline (default:3).")
