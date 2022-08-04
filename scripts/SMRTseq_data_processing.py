@@ -307,7 +307,7 @@ def alignment():
 def HDR_mode(umis):
     print("[Running in HDR mode...]")
     from LV_caller_HDR_mode import HDR_mode_main
-    HDR_mode_main(umis,args.reference,args.output)
+    HDR_mode_main(umis,args.reference,args.output,args.large_deletion_parameters)
 
 def large_deletion():
 
