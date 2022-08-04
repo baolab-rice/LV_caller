@@ -30,32 +30,19 @@ def generate_fasta_all(dictname, filename):
     f.close()
 
 # Long read alignment with minimap2
-def long_read_alignment_minimap2(reference,inputfile,filename):
+
+def long_read_alignment_minimap2(reference,inputfile,filename,mode):
+    if mode == "longread":
+        flag = " -ax splice "
+    elif mode == "nonlongread":
+        flag = " -a "
 
     if reference == None:
         print("No refence genome for alignment assigned, please input a reference with -r <reference_genome>")
     else:
         outputfile = filename + "_alignment.sam"
         logfile = filename + "_alignment.log"
-        arguments = ['minimap2 -ax splice {} {} > {}'\
-                .format(reference, inputfile, outputfile)]
-        print(arguments)
-        process = Popen(args = arguments,
-                        shell=True,
-                        stdout=PIPE, stderr=PIPE)
-        stdout, stderr = process.communicate()
-        f = open(logfile,"w")
-        f.write(stdout.decode("utf-8"))
-        f.write(stderr.decode("utf-8"))
-        f.close()
-
-def non_long_read_alignment_minimap2(reference,inputfile,filename):
-    if reference == None:
-        print("No refence genome for alignment assigned, please input a reference with -r <reference_genome>")
-    else:
-        outputfile = filename + "_alignment.sam"
-        logfile = filename + "_alignment.log"
-        arguments = ['minimap2 -a {} {} > {}'\
+        arguments = ['minimap2 ' + flag + '{} {} > {}'\
                 .format(reference, inputfile, outputfile)]
         print(arguments)
         process = Popen(args = arguments,
