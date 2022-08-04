@@ -38,14 +38,19 @@ def partial_ki_identification(infilename,outfilename,code,symbol):
 
 def HDR_mode_main(umis,reference,filename,ldcode):
     # Initial alignment 
+    print("[Initial alignment...]")
     filename_1 = filename + "_initial"
+    file_intial_sam = filename_1 + "_alignment.sam"
     long_read_alignment_minimap2(reference,filename_1)
-    large_deletion_calling(filename_1,ldcode,"consensus")
-    large_insertion_calling(filename_1)
+
+    print("[Large gene modification calling...]")
+    large_deletion_calling(file_intial_sam,ldcode,"consensus")
+    large_insertion_calling(file_intial_sam)
     rearrange(filename_1)
 
     ## w/o LI
     # Unmod or premature
+    print("[Identifying unmodied and premature reads...]")
     file_unmod = filename + "_HDR_unmod.txt" 
     file_premature = filename + "_HDR_premature.txt"
     file_LD200 = filename_1 + "_LD200.txt"
@@ -53,6 +58,7 @@ def HDR_mode_main(umis,reference,filename,ldcode):
     partial_ki_identification(file_LD200,file_premature,ldcode,">")
 
     # Perfect TI 
+    print("[Identifying perfect TI...]")
     file_small_and_unmod = filename_1 + "_small_INDELs_and_unmod_temp.txt"
     file_perfect_TI = filename + "_perfect_TI.txt"
     rename_file(file_small_and_unmod,file_perfect_TI)
@@ -61,6 +67,7 @@ def HDR_mode_main(umis,reference,filename,ldcode):
     remove_file(file_LD200)
 
     ## w/ LI - remap
+    print("[Remapping large insertions detected...]")
     file_LI_LD200 = filename + "_LI_with_LD200.fasta"
     file_LI_LD50 = filename + "_LI_with_LD50.fasta"
     file_LI_other = filename + "_LI_other.fasta"
