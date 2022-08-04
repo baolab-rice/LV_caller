@@ -55,7 +55,7 @@ def non_long_read_alignment_minimap2(reference,inputfile,filename):
     else:
         outputfile = filename + "_alignment.sam"
         logfile = filename + "_alignment.log"
-        arguments = ['minimap2 {} {} > {}'\
+        arguments = ['minimap2 -a {} {} > {}'\
                 .format(reference, inputfile, outputfile)]
         print(arguments)
         process = Popen(args = arguments,
