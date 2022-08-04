@@ -42,7 +42,8 @@ def HDR_mode_main(umis,reference,filename,ldcode):
     print("[Initial alignment...]")
     filename_1 = filename + "_initial"
     file_intial_sam = filename_1 + "_alignment.sam"
-    long_read_alignment_minimap2(reference,filename_1)
+    long_read_alignment_minimap2(reference,filename)
+    rename_file(filename + "_alignment.sam",file_intial_sam)
 
     print("[Large gene modification calling...]")
     large_deletion_calling(file_intial_sam,ldcode,"consensus")
