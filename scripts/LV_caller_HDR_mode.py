@@ -66,9 +66,6 @@ def HDR_mode_main(umis,reference,filename,ldcode):
     file_perfect_TI = filename + "_perfect_TI.txt"
     rename_file(file_small_and_unmod,file_perfect_TI)
 
-    # remove the file not need
-    remove_file(file_LD200)
-
     ## w/ LI - remap
     print("[Remapping large insertions detected...]")
     file_LI_LD200 = filename + "_LI_with_LD200.fasta"
@@ -81,6 +78,10 @@ def HDR_mode_main(umis,reference,filename,ldcode):
     long_read_alignment_minimap2(reference,file_LI_LD200,filename_2_200)
     long_read_alignment_minimap2(reference,file_LI_LD50,filename_2_50)
     long_read_alignment_minimap2(reference,file_LI_other,filename_2_other)
+
+
+    # remove the file not need
+    # remove_file(file_LD200)
 
 
 
