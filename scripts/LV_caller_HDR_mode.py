@@ -48,7 +48,7 @@ def HDR_mode_main(umis,reference,filename,ldcode):
     # Unmod or premature
     file_unmod = filename + "_HDR_unmod.txt" 
     file_premature = filename + "_HDR_premature.txt"
-    file_LD200 = filename1 + "_LD200.txt"
+    file_LD200 = filename_1 + "_LD200.txt"
     partial_ki_identification(file_LD200,file_unmod,ldcode,"<=")
     partial_ki_identification(file_LD200,file_premature,ldcode,">")
 
