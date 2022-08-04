@@ -68,9 +68,9 @@ def HDR_mode_main(umis,reference,filename,ldcode):
 
     ## w/ LI - remap
     print("[Remapping large insertions detected...]")
-    file_LI_LD200 = filename + "_LI_with_LD200.fasta"
-    file_LI_LD50 = filename + "_LI_with_LD50.fasta"
-    file_LI_other = filename + "_LI_other.fasta"
+    file_LI_LD200 = filename_1 + "_LI_with_LD200.fasta"
+    file_LI_LD50 = filename_1 + "_LI_with_LD50.fasta"
+    file_LI_other = filename_1 + "_LI_other.fasta"
 
     filename_2_200 = filename + "_remap_LI_with_LD200"
     filename_2_50 = filename + "_remap_LI_with_LD50"
