@@ -40,6 +40,7 @@ def long_read_alignment_minimap2(reference,filename):
         logfile = filename + "_alignment.log"
         arguments = ['minimap2 -ax splice {} {} > {}'\
                 .format(reference, inputfile, outputfile)]
+        print(arguments)
         process = Popen(args = arguments,
                         shell=True,
                         stdout=PIPE, stderr=PIPE)
