@@ -2,7 +2,7 @@
 # The HDR mode is for large integration (>=200bp) with donor.
 from os import rename
 from subprocess import Popen, PIPE
-from alignment_UMIs import long_read_alignment_minimap2
+from alignment_UMIs import long_read_alignment_minimap2, non_long_read_alignment_minimap2
 from large_insertions import large_insertion_calling
 from large_deletions import large_deletion_calling
 from LV_rearrange import rearrange
@@ -75,9 +75,9 @@ def HDR_mode_main(umis,reference,filename,ldcode):
     filename_2_200 = filename + "_remap_LI_with_LD200"
     filename_2_50 = filename + "_remap_LI_with_LD50"
     filename_2_other = filename + "_remap_LI_other"
-    long_read_alignment_minimap2(reference,file_LI_LD200,filename_2_200)
-    long_read_alignment_minimap2(reference,file_LI_LD50,filename_2_50)
-    long_read_alignment_minimap2(reference,file_LI_other,filename_2_other)
+    non_long_read_alignment_minimap2(reference,file_LI_LD200,filename_2_200)
+    non_long_read_alignment_minimap2(reference,file_LI_LD50,filename_2_50)
+    non_long_read_alignment_minimap2(reference,file_LI_other,filename_2_other)
 
 
     # remove the file not need
