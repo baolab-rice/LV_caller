@@ -43,8 +43,8 @@ def HDR_mode_main(umis,reference,filename,ldcode):
     filename_1 = filename + "_initial"
     inputfile = filename + "_consensus.fasta"
     file_intial_sam = filename_1 + "_alignment.sam"
-    long_read_alignment_minimap2(reference,filename)
-    rename_file(filename + "_alignment.sam",inputfile,file_intial_sam)
+    long_read_alignment_minimap2(reference,inputfile,filename)
+    rename_file(filename + "_alignment.sam",file_intial_sam)
 
     print("[Large gene modification calling...]")
     large_deletion_calling(file_intial_sam,ldcode,"consensus")
