@@ -26,7 +26,7 @@ def remove_file(filename):
 def partial_ki_identification(infilename,outfilename,code,symbol):
 
     cut_pos = int(code)
-    f = open(outfilename,'W')
+    f = open(outfilename,'w')
     f.write("UMI\tStart\tEnd\n")
     f.close()
     arguments = ['awk ' + "'{if ($2 " + symbol + cut_pos + ") print $1,$2,$3} '"  + infilename + ' >> ' + outfilename]
