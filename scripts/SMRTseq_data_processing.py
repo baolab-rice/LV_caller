@@ -328,7 +328,7 @@ def large_insertion():
     print("[Large insertions calling...]")
     inputfile = args.output + "_alignment.sam"
     from large_insertions import large_insertion_calling
-    large_insertion_calling(inputfile)
+    large_insertion_calling(inputfile,args.large_deletion_parameters)
 
 def large_variants_rearrange():
 

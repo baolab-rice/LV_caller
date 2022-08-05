@@ -19,8 +19,9 @@ def large_insertions(dictname):
 
     return dictname
 
-def calculate_insertion_pos(dictname,output):
+def calculate_insertion_pos(dictname,output,code):
 
+    cutsite = int(code)
     f = open(output,'w')
     #SA test 20220805
     file_umi_cut_pos = output.split("_LI_temp.fasta")[0] + "_LI_around_cutsite.txt"
@@ -36,8 +37,9 @@ def calculate_insertion_pos(dictname,output):
                 f.write(">{}\n".format(umi))
                 f.write(dictname[umi]['read'][start:end])
                 f.write('\n')
-                f2.write(umi)
-                f2.write('\n')
+                if cutsite - 10 <= start <= cutsite + 10:
+                    f2.write(umi)
+                    f2.write('\n')
                 start = end
             elif re.match('[MS=X]',pos[1]):
                 start = int(pos[0]) + start
@@ -46,19 +48,19 @@ def calculate_insertion_pos(dictname,output):
             
     return dictname
 
-def select_large_insertions(dictname,output):
+def select_large_insertions(dictname,output,code):
 
     dictname = seperate_cigar(dictname)
     dictname = large_insertions(dictname)
-    dictname = calculate_insertion_pos(dictname,output)
+    dictname = calculate_insertion_pos(dictname,output,codes)
     
     return dictname
 
-def large_insertion_calling(filename):
+def large_insertion_calling(filename,code):
 
     output = filename.split("_alignment")[0] + "_LI_temp.fasta"
     umis = read_from_sam(filename)
-    umis = select_large_insertions(umis,output)
+    umis = select_large_insertions(umis,output,code)
 
 def main():
     
