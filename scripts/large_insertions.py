@@ -22,6 +22,9 @@ def large_insertions(dictname):
 def calculate_insertion_pos(dictname,output):
 
     f = open(output,'w')
+    #SA test 20220805
+    file_umi_cut_pos = output.split("_LI_temp.fasta")[0] + "_LI_around_cutsite.txt"
+    f2 = open(file_umi_cut_pos,'w')
     for umi in dictname.keys():
 
         start = 0
@@ -33,10 +36,13 @@ def calculate_insertion_pos(dictname,output):
                 f.write(">{}\n".format(umi))
                 f.write(dictname[umi]['read'][start:end])
                 f.write('\n')
+                f2.write(umi)
+                f2.write('\n')
                 start = end
             elif re.match('[MS=X]',pos[1]):
                 start = int(pos[0]) + start
     f.close()
+    f2.close()
             
     return dictname
 
