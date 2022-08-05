@@ -37,7 +37,7 @@ def calculate_insertion_pos(dictname,output,code):
                 f.write(">{}\n".format(umi))
                 f.write(dictname[umi]['read'][start:end])
                 f.write('\n')
-                if cutsite - 10 <= start <= cutsite + 10:
+                if cutsite - 50 <= start <= cutsite + 50:
                     f2.write(umi)
                     f2.write('\n')
                 start = end
