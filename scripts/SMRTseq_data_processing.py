@@ -344,6 +344,15 @@ def large_deletion_clustering():
     from clustering import cluster_generate
     cluster_generate(inputfile, args.large_deletion_clustering_parameters)
 
+    #SA test 20220805
+    print("[Clustering intermedia deletions (50bp-200bp)...]")
+    inputfile = args.output + "_LD50to200.txt"
+    cluster_generate(inputfile, args.large_deletion_clustering_parameters)
+
+    print("[Clustering all large deletions (>=50bp)...]")
+    inputfile = args.output + "_LD.txt"
+    cluster_generate(inputfile, args.large_deletion_clustering_parameters)    
+
 def distribute_LD():
     #Gernate distribution figure
     print("[Generating distribution figure for large deletions (>=200bp)...]")
@@ -352,8 +361,24 @@ def distribute_LD():
 
     #Gernate distribution figure
     print("[Generating distribution figure for clustered large deletions (>=200bp)...]")
-    from distribution import distribution_generate
     distribution_generate(args.output + "_LD200_cluster.txt", int(args.large_deletion_parameters))
+
+    #SA test 20220805
+    #Gernate distribution figure
+    print("[Generating distribution figure for intermediate deletions (50bp-200bp)...]")
+    distribution_generate(args.output + "_LD50to200.txt", int(args.large_deletion_parameters))
+
+    #Gernate distribution figure
+    print("[Generating distribution figure for clustered intermediate deletions (50bp-200bp)...]")
+    distribution_generate(args.output + "_LD50to200_cluster.txt", int(args.large_deletion_parameters))
+
+    #Gernate distribution figure
+    print("[Generating distribution figure for all large deletions (>=50bp)...]")
+    distribution_generate(args.output + "_LD.txt", int(args.large_deletion_parameters))
+
+    #Gernate distribution figure
+    print("[Generating distribution figure for clustered all large deletions (>=50bp)...]")
+    distribution_generate(args.output + "_LD_cluster.txt", int(args.large_deletion_parameters))   
 
 def map_LI():
     #Mapping large insertions to reference genome

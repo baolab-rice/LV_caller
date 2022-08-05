@@ -44,7 +44,6 @@ def long_read_alignment_minimap2(reference,inputfile,filename,mode):
         logfile = filename + "_alignment.log"
         arguments = ['minimap2 ' + flag + '{} {} > {}'\
                 .format(reference, inputfile, outputfile)]
-        print(arguments)
         process = Popen(args = arguments,
                         shell=True,
                         stdout=PIPE, stderr=PIPE)

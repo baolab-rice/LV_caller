@@ -88,6 +88,18 @@ def rearrange(filename):
         f.write('\n')
     f.close()
 
+    #SA test 20220805
+    file_LD = filename + "_LD.txt"
+    f = open(file_LD,'w')
+    f.write("UMI\tStart\tEnd\tDeletion_length\tIf_cover_cutsite\tRead\tAlternative_deletion\n")
+    for umi,line in umis_LD200.items():
+        f.write(line)
+        f.write('\n')
+    for umi,line in umis_LD50.items():
+        f.write(line)
+        f.write('\n') 
+    f.close()
+
 def main():
     rearrange(sys.argv[1][:-9])
 
