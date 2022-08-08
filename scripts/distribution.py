@@ -38,15 +38,16 @@ def red_blue_profile_pretty(df, cutsite, output_svg,linewidth):
     for row in df.itertuples():
         mid = row.start + 0.5 * row.length
         end = row.start + row.length
-        if mid < 0:
-            plt.hlines(i, row.start, end, lw=linewidth, colors="red")
-            left += 1
-        else:
-            plt.hlines(i, row.start, end, lw=linewidth, colors="blue")
-            right += 1
         dev = abs(mid)/(end - row.start)
         if dev <= 0.05:
             sim += 1
+        else:
+            if mid < 0:
+                plt.hlines(i, row.start, end, lw=linewidth, colors="red")
+                left += 1
+            else:
+                plt.hlines(i, row.start, end, lw=linewidth, colors="blue")
+                right += 1
         i += 1
 
     left_freq = str(left/total * 100)
