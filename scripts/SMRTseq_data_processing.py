@@ -426,7 +426,7 @@ def main():
                 large_deletion_clustering()
                 distribute_LD()
                 remove_temp()
-                map_LI()
+                #map_LI()
             generate_stats()  
     elif args.reference != None and args.HDR_mode == True:
         HDR_mode(umis)
