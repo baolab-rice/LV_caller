@@ -50,12 +50,12 @@ def red_blue_profile_pretty(df, cutsite, output_svg,linewidth):
                 right += 1
         i += 1
 
-    left_freq = str(round(left/total * 100, 2))
-    left_freq = left_freq + '%'
-    right_freq = str(round(right/total * 100, 2))
-    right_freq = right_freq + '%'
-    sym_rate = str(round(sym/total * 100, 2))
-    sym_rate = sym_rate + '%'
+    left_freq = round(left/total * 100, 2) 
+    right_freq = round(right/total * 100, 2)
+    sym_rate = round(100 - left_freq - right_freq, 2)
+    left_freq = str(left_freq) + '%'
+    right_freq = str(right_freq) + '%'
+    sym_rate = str(sym_rate) + '%'
 
     plt.xlabel("Relative position of large deletions")
     plt.xlim(-3000, 3000) # everthing except for HBG
