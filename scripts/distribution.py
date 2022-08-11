@@ -34,13 +34,13 @@ def red_blue_profile_pretty(df, cutsite, output_svg,linewidth):
     left = 0
     right = 0
     total = len(list(df.itertuples()))
-    sim = 0
+    sym = 0
     for row in df.itertuples():
         mid = row.start + 0.5 * row.length
         end = row.start + row.length
         dev = abs(mid)/(end - row.start)
         if dev <= 0.05:
-            sim += 1
+            sym += 1
         else:
             if mid < 0:
                 plt.hlines(i, row.start, end, lw=linewidth, colors="red")
@@ -50,12 +50,12 @@ def red_blue_profile_pretty(df, cutsite, output_svg,linewidth):
                 right += 1
         i += 1
 
-    left_freq = str(left/total * 100)
-    left_freq = left_freq.split('.')[0] + '.' + left_freq.split('.')[1][:2] + '%'
-    right_freq = str(right/total * 100)
-    right_freq = right_freq.split('.')[0] + '.' + right_freq.split('.')[1][:2] + '%'
-    sim_rate = str(sim/total * 100)
-    sim_rate = sim_rate.split('.')[0] + '.' + sim_rate.split('.')[1][:2] + '%'
+    left_freq = str(round(left/total * 100, 2))
+    left_freq = left_freq + '%'
+    right_freq = str(round(right/total * 100, 2))
+    right_freq = right_freq + '%'
+    sym_rate = str(round(sym/total * 100, 2))
+    sym_rate = sym_rate + '%'
 
     plt.xlabel("Relative position of large deletions")
     plt.xlim(-3000, 3000) # everthing except for HBG
