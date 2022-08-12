@@ -68,7 +68,7 @@ def red_blue_profile_pretty(df, cutsite, output_svg,linewidth):
         verticalalignment='top', horizontalalignment='left',
         color='blue', fontsize=20)
 
-    plt.text(1500, 5, "Sym:{}".format(sim_rate),
+    plt.text(1500, 5, "Sym:{}".format(sym_rate),
         verticalalignment='top', horizontalalignment='left',
         color='black', fontsize=15)
 
