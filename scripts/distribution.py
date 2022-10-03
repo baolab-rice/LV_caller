@@ -42,12 +42,14 @@ def red_blue_profile_pretty(df, cutsite, output_svg,linewidth):
         if dev <= 0.05:
             sym += 1
         else:
-            if mid < 0:
-                plt.hlines(i, row.start, end, lw=linewidth, colors="red")
+            if mid < 0:          
                 left += 1
             else:
-                plt.hlines(i, row.start, end, lw=linewidth, colors="blue")
                 right += 1
+        if mid < 0:
+            plt.hlines(i, row.start, end, lw=linewidth, colors="red")
+        else:
+            plt.hlines(i, row.start, end, lw=linewidth, colors="blue")
         i += 1
 
     left_freq = round(left/total * 100, 2) 
