@@ -271,6 +271,9 @@ The distribution plotting.
 
 ![distribution](Distribution.svg)
 
+## Citation
+Park SH, Cao M, Pan Y, et al. Comprehensive analysis and accurate quantification of unintended large gene modifications induced by CRISPR-Cas9 gene editing. Sci Adv. 2022;8(42):eabo7676. doi:10.1126/sciadv.abo7676
+
 ## References
 <a id="1">[1]</a> 
 SM Karst, RM Ziels, RH Kirkegaard, EA Sørensen, D. McDonald, Q Zhu, R Knight, & M Albertsen. (2020). Enabling high-accuracy long-read amplicon sequences using unique molecular identifiers with Nanopore or PacBio sequencing. bioRxiv, 6459039. https://github.com/SorenKarst/longread_umi
