@@ -460,7 +460,7 @@ if __name__ == "__main__":
 
 
     # Alignment
-    parser.add_argument('-m','--mapping',default=False,action='store_true',\
+    parser.add_argument('-m','--mapping',default=True,action='store_true',\
                         help="Mapping all filetered read to reference amp using minimap2.\
                             For the large deletion analysis option, could ONLY use minimap2.")
     parser.add_argument('-g','--reference',help="Alignment reference amp. If use HDR mode, \
