@@ -457,6 +457,7 @@ if __name__ == "__main__":
                                 Consensus_seq\
                                 Reads_seqs")
     parser.add_argument('-r','--reads',help="Input PicBio ccs fasta file. (converted with seqtk)")
+    parser.add_argument('-R', '--Reads', help="Unbarcoded reads.")
 
 
     # Alignment
