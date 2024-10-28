@@ -90,8 +90,6 @@ optional arguments:
   -os {1,2}, --output_style {1,2}
                         If also involve raw reads, can also produce a file contaning all reads. -os 1:
                         UMI_ID Read_ID Read_sequence Centroid_ID. -os 2: UMI Consensus_seq Reads_seqs
-  -r READS, --reads READS
-                        Input PicBio ccs fasta file. (converted with seqtk)
   -R READS, --Reads READS
                         Unbarcoded reads.
   -m, --mapping         Mapping all filetered read to reference amp using minimap2. For the large
