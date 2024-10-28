@@ -113,11 +113,6 @@ optional arguments:
   -ld_cps LARGE_DELETION_CLUSTERING_PARAMETERS, --large_deletion_clustering_parameters LARGE_DELETION_CLUSTERING_PARAMETERS
                         Large deletion clustering parameters: FORMAT:
                         deletion_size_tolenrance+d+deletion_position_tolerance+l Default: 10d10l
-  -hdr, --HDR_mode      Running in HDR mode. The expected HDR amplicon sequence is required as a
-                        reference in -g.
-  -a, --all             Process all reads.
-  -rxn RACONX, --raconx RACONX
-                        raconx number used in longread_umi pipeline (default:3)
 
 ```
 
