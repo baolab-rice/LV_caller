@@ -79,29 +79,28 @@ convert file if raw reads need to be processed.'
 optional arguments:
   -h, --help            show this help message and exit
   -d DIRECTORY, --directory DIRECTORY
-                        Directory of outout folder with longumi_read pipeline,
-                        the output folder should contain a raconx subfolder.
+                        Directory of outout folder with longumi_read pipeline, the output folder should
+                        contain a raconx subfolder.
   -o OUTPUT, --output OUTPUT
                         Output directory. Output the completly organized file.
   -st {1,2}, --stats {1,2}
-                        Output the stats filem (default=2): -st 1: UMI_ID
-                        Read_IDs Consensus_read_sequence; -st 2: UMI_ID
-                        Read_count Consensus_read_sequence
+                        Output the stats filem (default=2): -st 1: UMI_ID Read_IDs
+                        Consensus_read_sequence; -st 2: UMI_ID Read_count Consensus_read_sequence
   -os {1,2}, --output_style {1,2}
-                        If also involve raw reads, can also produce a file
-                        contaning all reads. -os 1: UMI_ID Read_ID
-                        Read_sequence Centroid_ID. -os 2: UMI Consensus_seq
-                        Reads_seqs
+                        If also involve raw reads, can also produce a file contaning all reads. -os 1:
+                        UMI_ID Read_ID Read_sequence Centroid_ID. -os 2: UMI Consensus_seq Reads_seqs
   -r READS, --reads READS
                         Input PicBio ccs fasta file. (converted with seqtk)
-  -m, --mapping         Mapping all filetered read to reference amp using
-                        minimap2. For the large deletion analysis option,
-                        could ONLY use minimap2.
+  -R READS, --Reads READS
+                        Unbarcoded reads.
+  -m, --mapping         Mapping all filetered read to reference amp using minimap2. For the large
+                        deletion analysis option, could ONLY use minimap2.
   -g REFERENCE, --reference REFERENCE
-                        Alignment reference amp.
+                        Alignment reference amp. If use HDR mode, the expected HDR amplicon sequence is
+                        required.
   -ld, --large_deletion
-                        Large deletion calling, devide LDs as small INDELs or
-                        unmodified, 50bp-200bp, and >=200bp.
+                        Large deletion calling, devide LDs as small INDELs or unmodified, 50bp-200bp,
+                        and >=200bp.
   -ld_ps LARGE_DELETION_PARAMETERS, --large_deletion_parameters LARGE_DELETION_PARAMETERS
                         Large deletion analysis parameters:
   -li, --large_insertion
@@ -109,16 +108,15 @@ optional arguments:
   -G GENOME, --genome GENOME
                         Reference Genome.
   -ld_c, --large_deletion_clustering
-                        Large deletion clustering based on deletion size and
-                        deletion start site.
+                        Large deletion clustering based on deletion size and deletion start site.
   -ld_cps LARGE_DELETION_CLUSTERING_PARAMETERS, --large_deletion_clustering_parameters LARGE_DELETION_CLUSTERING_PARAMETERS
-                        Large deletion clustering parameters: FORMAT: deletion
-                        _size_tolenrance+d+deletion_position_tolerance+l
-                        Default: 10d10l
+                        Large deletion clustering parameters: FORMAT:
+                        deletion_size_tolenrance+d+deletion_position_tolerance+l Default: 10d10l
+  -hdr, --HDR_mode      Running in HDR mode. The expected HDR amplicon sequence is required as a
+                        reference in -g.
   -a, --all             Process all reads.
   -rxn RACONX, --raconx RACONX
-                        raconx number used in longread_umi pipeline
-                        (default:3).
+                        raconx number used in longread_umi pipeline (default:3)
 
 ```
 
