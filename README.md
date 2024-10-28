@@ -73,8 +73,9 @@ In the script folder, you could run with the following line. (Note:rxn is for id
 usage: SMRTseq_data_processing.py [-h] -d DIRECTORY -o OUTPUT [-st {1,2}] [-os {1,2}] [-r READS] [-m] [-g REFERENCE] [-ld] [-ld_ps LARGE_DELETION_PARAMETERS] [-li]
                                   [-G GENOME] [-ld_c] [-ld_cps LARGE_DELETION_CLUSTERING_PARAMETERS] [-a]
 
-longumi_read downstraem analysis: Version 3 this script is for extracting data from longumi_read pipeline output. You may use 'seqtk seq -a <fastq> > <fasta> to
-convert file if raw reads need to be processed.'
+You may use 'seqtk seq -a <fastq> > <fasta> to convert file if raw reads need to be processed.'
+
+For longumi_read downstraem analysis: Version 3 this script is for extracting data from longumi_read pipeline output. 
 
 optional arguments:
   -h, --help            show this help message and exit
